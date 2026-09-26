@@ -1,0 +1,17 @@
+.git
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv/
+scratch/
+test_tmp/
+tests/
+validation/
+docs/
+docs_root/
+docs_temp/
+state/checkpoint.key
+*.quarantine.*

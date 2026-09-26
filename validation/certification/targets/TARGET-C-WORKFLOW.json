@@ -1,0 +1,40 @@
+{
+  "profile": {
+    "target_id": "TARGET-C-WORKFLOW",
+    "name": "LogiFlow Procurement Engine",
+    "category": "COMPLEX_WORKFLOW",
+    "base_url": "http://127.0.0.1:8083/workflow",
+    "auth_model": "Mutual TLS + API Key Headers",
+    "technology_stack": "Go / Microservices / gRPC-Gateway",
+    "authorization_ref": "AUTH-LOGIFLOW-2026-003",
+    "description": "Complex order state machine spanning Purchase Order creation, Multi-sign approval, Fulfillment, and Invoicing."
+  },
+  "authorization": {
+    "target_identifier": "TARGET-C-WORKFLOW",
+    "authorized_by": "VP Infrastructure & Trust, LogiFlow Global",
+    "authorization_reference": "AUTH-LOGIFLOW-2026-003",
+    "authorization_timestamp": "2026-01-01T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z",
+    "in_scope_assets": [
+      "127.0.0.1:8083",
+      "127.0.0.1"
+    ],
+    "excluded_assets": [
+      "127.0.0.1:8083/workflow/live-warehouse-dispatch"
+    ],
+    "permitted_testing": [
+      "State machine race conditions",
+      "Step skipping",
+      "Approval bypass",
+      "Price parameter manipulation",
+      "PASSIVE_RECONNAISSANCE",
+      "RECONNAISSANCE"
+    ],
+    "prohibited_testing": [
+      "Physical warehouse dispatch trigger",
+      "Hardware key tampering"
+    ]
+  },
+  "authorization_hash": "f01eb6938ffef1648d2d84a32ede3ae5911c9e2acbd5bc0b41d2c104f076c8f6"
+}

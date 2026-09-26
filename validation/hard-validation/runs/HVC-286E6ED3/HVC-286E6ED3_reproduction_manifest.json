@@ -1,0 +1,59 @@
+{
+  "hvc_run_id": "HVC-286E6ED3",
+  "timestamp": "2026-09-04T08:11:34Z",
+  "environment_fingerprint": "LOCAL_VERIFIED_HVC",
+  "hunter_version": "1.0.0-FROZEN",
+  "pvct_version": "1.0.0-FROZEN",
+  "suites": [
+    {
+      "suite_name": "PVCT_VALIDATION",
+      "command": "C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/validation -q",
+      "collected": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 13.791,
+      "exit_code": 0,
+      "raw_summary": "26 passed in 11.41s"
+    },
+    {
+      "suite_name": "P1_P15_INTEGRATION",
+      "command": "C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/integration tests/regression tests/recovery tests/scope tests/unit -q",
+      "collected": 317,
+      "passed": 316,
+      "failed": 0,
+      "skipped": 1,
+      "duration_seconds": 55.128,
+      "exit_code": 0,
+      "raw_summary": "316 passed, 1 skipped in 52.99s"
+    },
+    {
+      "suite_name": "HVC_HARD_VALIDATION",
+      "command": "C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/hard_validation -q",
+      "collected": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 5.296,
+      "exit_code": 0,
+      "raw_summary": "11 passed in 3.29s"
+    }
+  ],
+  "total_collected": 354,
+  "total_passed": 353,
+  "total_failed": 0,
+  "total_skipped": 1,
+  "total_duration_seconds": 74.215,
+  "reproduction_status": "PASS",
+  "accounting_correction_notes": [
+    "Baseline Reproduction Accounting (PVCT + P1-P15): 343 items collected (342 passed, 1 skipped, 0 failed).",
+    "Total Full Repository Accounting (All Suites Combined): 354 items collected (353 passed, 1 skipped, 0 failed).",
+    "Exact Verification: PVCT suite (26) + P1-P15 baseline (317) + HVC Hard Validation suite (11) = 354 total collected tests across entire repository.",
+    "Historical Terminology Reconciliation: Clarified prior conflation between 342 passed baseline tests, 343 collected baseline items, and 354 total repository tests."
+  ],
+  "baseline_collected": 343,
+  "baseline_passed": 342,
+  "baseline_failed": 0,
+  "baseline_skipped": 1,
+  "digest": "0daaf669d93f92e12305b9aa2e68c9b43b69b39fba40441448165887e48de243"
+}

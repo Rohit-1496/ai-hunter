@@ -1,0 +1,53 @@
+tools:
+  - name: nmap
+    category: network
+    description: "Network exploration tool and security / port scanner."
+    required: true
+    priority: CRITICAL
+    binary_names:
+      - nmap
+    verification_command: "nmap --version"
+    minimum_version: "7.0"
+    user_install_supported: false
+    system_install_supported: true
+    requires_root: true
+    trust_level: VALIDATED_RESTRICTED
+
+  - name: httpx
+    category: recon
+    description: "Fast and multi-purpose HTTP toolkit"
+    required: true
+    priority: REQUIRED
+    binary_names:
+      - httpx
+    verification_command: "httpx -version"
+    user_install_supported: true
+    system_install_supported: true
+    requires_root: false
+    trust_level: APPROVED_FOR_SYNTHETIC_LAB
+
+  - name: dnsx
+    category: dns
+    description: "Fast and multi-purpose DNS toolkit"
+    required: true
+    priority: REQUIRED
+    binary_names:
+      - dnsx
+    verification_command: "dnsx -version"
+    user_install_supported: true
+    system_install_supported: true
+    requires_root: false
+    trust_level: APPROVED_FOR_SYNTHETIC_LAB
+
+  - name: jq
+    category: supporting
+    description: "Command-line JSON processor"
+    required: true
+    priority: CRITICAL
+    binary_names:
+      - jq
+    verification_command: "jq --version"
+    user_install_supported: true
+    system_install_supported: true
+    requires_root: false
+    trust_level: APPROVED_FOR_SYNTHETIC_LAB

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "Hunter",
+  "instructions": [
+    "/home/kali/Downloads/ai-hunter/AGENTS.md",
+    "/home/kali/Downloads/ai-hunter/hunter/brain.md",
+    "/home/kali/Downloads/ai-hunter/hunter/policy.md"
+  ],
+  "mcp": {
+    "hunter-runtime": {
+      "type": "local",
+      "command": [
+        "/home/kali/Downloads/ai-hunter/venv/bin/python",
+        "-m",
+        "runtime.adapter.mcp_server",
+        "--project-root",
+        "/home/kali/Downloads/ai-hunter"
+      ],
+      "env": {
+        "HUNTER_PROJECT_ROOT": "/home/kali/Downloads/ai-hunter",
+        "PYTHONPATH": "/home/kali/Downloads/ai-hunter"
+      },
+      "enabled": true
+    }
+  },
+  "autoapprove": true,
+  "permission": "allow"
+}

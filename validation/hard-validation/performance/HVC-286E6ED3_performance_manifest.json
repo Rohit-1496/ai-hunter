@@ -1,0 +1,27 @@
+{
+  "hvc_run_id": "HVC-286E6ED3",
+  "environment_info": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "python_version": "3.11.9",
+    "os": "Windows"
+  },
+  "baseline_rss_mb": 29.988,
+  "peak_rss_mb": 32.086,
+  "delta_rss_mb": 2.098,
+  "decision_latency": {
+    "sample_count": 100,
+    "min_microseconds": 3.1,
+    "max_microseconds": 576.0,
+    "mean_microseconds": 10.779,
+    "median_microseconds": 3.6,
+    "p50_microseconds": 3.6,
+    "p90_microseconds": 8.31,
+    "p95_microseconds": 10.415,
+    "p99_microseconds": 47.043,
+    "mean_milliseconds": 0.0108
+  },
+  "graph_ingestion_throughput_nodes_per_sec": 83917.96,
+  "payload_normalization_throughput_mb_per_sec": 3.62,
+  "digest": "3999491348a5d5d6a187e98e65ea0ea9bbbe8d6f4ee3dccdd394f14c817b4065"
+}

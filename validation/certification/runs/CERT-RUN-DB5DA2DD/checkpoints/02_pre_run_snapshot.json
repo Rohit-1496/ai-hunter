@@ -1,0 +1,21 @@
+{
+  "checkpoint_name": "02_pre_run_snapshot",
+  "run_id": "CERT-RUN-DB5DA2DD",
+  "recorded_at": "2026-09-04T08:27:58Z",
+  "data": {
+    "snapshot_id": "snap_CERT-RUN-DB5DA2DD_1788510478",
+    "run_id": "CERT-RUN-DB5DA2DD",
+    "timestamp": "2026-09-04T08:27:58Z",
+    "p13_knowledge_hashes": [
+      "980ba5a257ec02e529fa162fa22f9cb162293c29e788a5f3c262b8e232698736"
+    ],
+    "benchmark_vulnerability_tokens": [
+      "BENCHMARK_FLAG_99"
+    ],
+    "canary_tokens": [
+      "CANARY_SECRET_LEAK_TEST"
+    ],
+    "graph_node_count": 120,
+    "prior_hypotheses_count": 15
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "hvc_run_id": "HVC-FECBFBDA",
+  "timestamp": "2026-09-04T07:46:31Z",
+  "environment_fingerprint": "LOCAL_VERIFIED_HVC",
+  "hunter_version": "1.0.0-FROZEN",
+  "pvct_version": "1.0.0-FROZEN",
+  "suites": [
+    {
+      "suite_name": "PVCT_VALIDATION",
+      "command": "C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/validation -q",
+      "collected": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 14.494,
+      "exit_code": 0,
+      "raw_summary": "26 passed in 11.89s"
+    },
+    {
+      "suite_name": "P1_P15_INTEGRATION",
+      "command": "C:\\Users\\rohit\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m pytest tests/integration tests/regression tests/recovery tests/scope tests/unit -q",
+      "collected": 317,
+      "passed": 316,
+      "failed": 0,
+      "skipped": 1,
+      "duration_seconds": 59.986,
+      "exit_code": 0,
+      "raw_summary": "316 passed, 1 skipped in 57.77s"
+    }
+  ],
+  "total_collected": 343,
+  "total_passed": 342,
+  "total_failed": 0,
+  "total_skipped": 1,
+  "total_duration_seconds": 74.48,
+  "reproduction_status": "PASS",
+  "accounting_correction_notes": [
+    "Exact Accounting: Total items collected = 343.",
+    "Passed: 342, Skipped: 1, Failed: 0.",
+    "Terminology Correction: '342 passed + 1 skipped' represents 343 collected test items across all suites.",
+    "Historical Claims: 316 P1-P15 tests + 26 PVCT tests confirmed reproducible without regressions."
+  ],
+  "digest": "ed1442eb70f72da791bdda6487e62557faf16b990a9598e49f4328dd4aa9006e"
+}

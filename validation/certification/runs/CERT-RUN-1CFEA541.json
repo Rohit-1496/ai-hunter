@@ -1,0 +1,45 @@
+{
+  "certification_run_id": "CERT-RUN-1CFEA541",
+  "created_at": "2026-09-04T08:26:55Z",
+  "hunter_version": "2.0.0-certified",
+  "git_commit": "e4b8a21-pinned",
+  "environment_fingerprint": "win32-py311-ec2b4a49",
+  "hvc_run_id": "HVC-286E6ED3",
+  "authorization_record": {
+    "target_identifier": "TARGET-A-WEBAPP",
+    "authorized_by": "Apex Security Operations Lead",
+    "authorization_reference": "AUTH-APEX-2026-001",
+    "authorization_timestamp": "2026-01-01T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z",
+    "in_scope_assets": [
+      "127.0.0.1:8081",
+      "127.0.0.1"
+    ],
+    "excluded_assets": [
+      "127.0.0.1:8081/admin/internal/reboot",
+      "127.0.0.1:8081/super-admin"
+    ],
+    "permitted_testing": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "IDOR testing",
+      "BFLA testing",
+      "Session audit"
+    ],
+    "prohibited_testing": [
+      "Denial of service",
+      "Data exfiltration beyond test accounts",
+      "Credential stuffing",
+      "Destructive drops"
+    ]
+  },
+  "target_id": "TARGET-A-WEBAPP",
+  "scope_hash": "1e80ec928f26065cfb9539ff6e00ecbcb7fce6dfddde85e32bacaa9c522701dd",
+  "methodology_version": "1.0.0-PVCT-L5",
+  "status": "FAILED",
+  "digest": "06e745a83fe6ebf8c0e876eacac88500f1b4f9b4ad351493600db2b5cfcac914"
+}

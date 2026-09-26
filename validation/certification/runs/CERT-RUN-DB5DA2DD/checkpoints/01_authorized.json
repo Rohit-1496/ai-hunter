@@ -1,0 +1,9 @@
+{
+  "checkpoint_name": "01_authorized",
+  "run_id": "CERT-RUN-DB5DA2DD",
+  "recorded_at": "2026-09-04T08:27:58Z",
+  "data": {
+    "authorized": true,
+    "errors": []
+  }
+}

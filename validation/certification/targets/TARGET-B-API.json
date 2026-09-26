@@ -1,0 +1,41 @@
+{
+  "profile": {
+    "target_id": "TARGET-B-API",
+    "name": "Vanguard Banking Core API",
+    "category": "API_MULTI_ROLE",
+    "base_url": "http://127.0.0.1:8082/api/v2",
+    "auth_model": "OAuth2 Bearer JWT with Organization Claims",
+    "technology_stack": "Python / FastAPI / PostgreSQL",
+    "authorization_ref": "AUTH-VANGUARD-2026-002",
+    "description": "Multi-tenant core banking API with granular role-based access control across analyst, manager, and auditor tiers."
+  },
+  "authorization": {
+    "target_identifier": "TARGET-B-API",
+    "authorized_by": "Chief Information Security Officer, Vanguard Financial",
+    "authorization_reference": "AUTH-VANGUARD-2026-002",
+    "authorization_timestamp": "2026-01-01T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z",
+    "in_scope_assets": [
+      "127.0.0.1:8082",
+      "127.0.0.1"
+    ],
+    "excluded_assets": [
+      "127.0.0.1:8082/api/v2/system/hardware-key"
+    ],
+    "permitted_testing": [
+      "API parameter tampering",
+      "JWT validation",
+      "Cross-tenant access attempts",
+      "RBAC escalation testing",
+      "PASSIVE_RECONNAISSANCE",
+      "RECONNAISSANCE"
+    ],
+    "prohibited_testing": [
+      "High-rate fuzzing (>50 req/s)",
+      "Database corruption",
+      "Altering production records"
+    ]
+  },
+  "authorization_hash": "c9b3565b46218ecd69c6b00df77a66b8b361f58f2b86ae0f73bba59ab82d75d5"
+}

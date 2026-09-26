@@ -1,0 +1,21 @@
+{
+  "checkpoint_name": "02_pre_run_snapshot",
+  "run_id": "CERT-RUN-C8D12CE2",
+  "recorded_at": "2026-09-04T08:33:19Z",
+  "data": {
+    "snapshot_id": "snap_CERT-RUN-C8D12CE2_1788510799",
+    "run_id": "CERT-RUN-C8D12CE2",
+    "timestamp": "2026-09-04T08:33:19Z",
+    "p13_knowledge_hashes": [
+      "980ba5a257ec02e529fa162fa22f9cb162293c29e788a5f3c262b8e232698736"
+    ],
+    "benchmark_vulnerability_tokens": [
+      "BENCHMARK_FLAG_99"
+    ],
+    "canary_tokens": [
+      "CANARY_SECRET_LEAK_TEST"
+    ],
+    "graph_node_count": 120,
+    "prior_hypotheses_count": 15
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "hvc_run_id": "HVC-F08BA233",
+  "timestamp": "2026-09-04T07:48:22Z",
+  "total_phases_tested": 5,
+  "phases_passed": 5,
+  "phases_failed": 0,
+  "all_passed": true,
+  "phase_results": [
+    {
+      "phase_interrupted": "DISCOVERY",
+      "failure_mechanism": "Sudden process death during initial endpoint enumeration",
+      "safe_state_achieved": true,
+      "evidence_preserved": true,
+      "clean_recovery_verified": true,
+      "no_fabricated_success": true,
+      "details": "Partial discovery evidence preserved in durable store; clean resume verified."
+    },
+    {
+      "phase_interrupted": "EXPERIMENT_EXECUTION",
+      "failure_mechanism": "Mid-flight execution termination before hypothesis confirmation",
+      "safe_state_achieved": true,
+      "evidence_preserved": true,
+      "clean_recovery_verified": true,
+      "no_fabricated_success": true,
+      "details": "Active hypothesis state preserved without false confirmation."
+    },
+    {
+      "phase_interrupted": "POC_VALIDATION",
+      "failure_mechanism": "Target state mutation while PoC is validating",
+      "safe_state_achieved": true,
+      "evidence_preserved": true,
+      "clean_recovery_verified": true,
+      "no_fabricated_success": true,
+      "details": "Stale PoC detector invalidated mutating target PoC before execution."
+    },
+    {
+      "phase_interrupted": "ATTACK_CHAIN_SYNTHESIS",
+      "failure_mechanism": "Process kill while synthesizing attack graph edges",
+      "safe_state_achieved": true,
+      "evidence_preserved": true,
+      "clean_recovery_verified": true,
+      "no_fabricated_success": true,
+      "details": "Security Graph nodes and relationships durably recovered from capsule."
+    },
+    {
+      "phase_interrupted": "FINALIZATION_AND_ASSURANCE",
+      "failure_mechanism": "Resource exhaustion triggering mission conclusion",
+      "safe_state_achieved": true,
+      "evidence_preserved": true,
+      "clean_recovery_verified": true,
+      "no_fabricated_success": true,
+      "details": "Completion engine evaluated budget exhaustion and halted cleanly."
+    }
+  ],
+  "digest": "decd8b940831fa340ade56402cc2f685e3f40e292f2a86db85d1b4fd3ed1ce39"
+}

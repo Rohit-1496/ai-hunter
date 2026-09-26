@@ -1,0 +1,41 @@
+{
+  "hvc_run_id": "HVC-286E6ED3",
+  "timestamp": "2026-09-04T08:11:36Z",
+  "tiers": [
+    {
+      "tier_name": "TIER_1K",
+      "target_endpoints": 1000,
+      "actual_endpoints_ingested": 1000,
+      "edges_created": 999,
+      "status": "PASS",
+      "elapsed_seconds": 0.011,
+      "throughput_nodes_sec": 93051.82,
+      "rss_mb_delta": 0.09,
+      "rationale": "Successfully ingested 1000 endpoints and 999 edges in 0.01s."
+    },
+    {
+      "tier_name": "TIER_5K",
+      "target_endpoints": 5000,
+      "actual_endpoints_ingested": 5000,
+      "edges_created": 4999,
+      "status": "PASS",
+      "elapsed_seconds": 0.06,
+      "throughput_nodes_sec": 83477.33,
+      "rss_mb_delta": 3.656,
+      "rationale": "Successfully ingested 5000 endpoints and 4999 edges in 0.06s."
+    },
+    {
+      "tier_name": "TIER_10K",
+      "target_endpoints": 10000,
+      "actual_endpoints_ingested": 10000,
+      "edges_created": 9999,
+      "status": "PASS",
+      "elapsed_seconds": 0.133,
+      "throughput_nodes_sec": 75293.21,
+      "rss_mb_delta": 4.754,
+      "rationale": "Successfully ingested 10000 endpoints and 9999 edges in 0.13s."
+    }
+  ],
+  "max_scale_tier_passed": "TIER_10K",
+  "digest": "923ffeb111f32c929ea818eaf7ad825dcb5e7fd09bff2f3bed000335278bbde3"
+}

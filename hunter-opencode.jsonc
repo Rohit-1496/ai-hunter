@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // AI Autonomous Bug Hunter — V1
+  // OpenCode configuration template.
+  // Edit <PROJECT_ROOT> to the absolute path of ai-hunter/ before use.
+  // Example Windows: C:/Users/rohit/ai-hunter
+  // Example Linux/macOS: /home/user/ai-hunter
+
+  "username": "Hunter",
+
+  // --- PROMPT LAYER (identity + methodology) ---
+  // AGENTS.md: hunter identity, command routing, operational rules
+  // brain.md:  Beast Brain constitution (handshake, context contract, modes)
+  // policy.md: scope and safety policy
+  // These are injected as LLM system context. They shape behavior and identity.
+  "instructions": [
+    "<PROJECT_ROOT>/AGENTS.md",
+    "<PROJECT_ROOT>/hunter/brain.md",
+    "<PROJECT_ROOT>/hunter/policy.md"
+  ],
+
+  // --- EXECUTABLE ADAPTER (real runtime connectivity) ---
+  // The hunter-runtime MCP server is spawned by OpenCode as a local process.
+  // It communicates via stdio (JSON-RPC 2.0 / MCP protocol).
+  // When the LLM calls hunter_hi or hunter_status, OpenCode invokes these tools,
+  // which call the real HunterRuntime Python code and return real subsystem health.
+  // Dependency: pip install mcp (mcp 2.x, MCPServer)
+  "mcp": {
+    "hunter-runtime": {
+      "type": "local",
+      "command": [
+        "python",
+        "-m",
+        "runtime.adapter.mcp_server",
+        "--project-root",
+        "<PROJECT_ROOT>"
+      ],
+      "env": {
+        "HUNTER_PROJECT_ROOT": "<PROJECT_ROOT>"
+      },
+      "enabled": true
+    }
+  },
+
+  // Silent mode — scope enforcement is in policy.md + runtime, not here.
+  "autoapprove": true,
+  "permission": "allow",
+
+  // Custom slash commands: none for Phase 1.
+  "command": {}
+}

@@ -1,0 +1,9 @@
+{
+  "hvc_run_id": "HVC-F08BA233",
+  "status": "NOT_TESTED",
+  "study_metadata": null,
+  "comparison_metrics": null,
+  "rationale": "No verified live human researcher study was conducted for this run. In accordance with HVC Rule 14, simulated human baseline data is explicitly barred from serving as Level 5 proof. Status marked NOT_TESTED.",
+  "admissible_for_level5": false,
+  "digest": "a267190af9797f3777d0efbbe93f67ad215e78efccf91245153ae2278aadcb3b"
+}

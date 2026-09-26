@@ -1,0 +1,18 @@
+{
+  "hvc_run_id": "HVC-F08BA233",
+  "mission_id": "M-REAL-HVC-F08BA233",
+  "target_url": "http://127.0.0.1:8080/authorized_app",
+  "authorization_verified": true,
+  "authorization_doc_id": "AUTH-HVC-HVC-F08BA233",
+  "autonomous_trace_preserved": true,
+  "trace_artifact_path": "validation/hard-validation/real-authorized/HVC-F08BA233_trace.json",
+  "finding_discovered": false,
+  "finding_id": null,
+  "p11_reproduction_status": "NOT_APPLICABLE",
+  "p15_assurance_status": "PASSED",
+  "human_verification": null,
+  "execution_verdict": "REAL_TARGET_EXECUTED_NO_FINDING",
+  "level5_admissible": false,
+  "rationale": "Target executed autonomously under valid authorization with preserved trace, but yielded no validated finding. In accordance with HVC-11, a clean target validates execution safety but does not prove discovery capability. Insufficient for Level 5 proof.",
+  "digest": "be54b7b8d97328d8d74e5ae008e64ccad920547d0d5d319db67400e5461ab24d"
+}

@@ -1,0 +1,47 @@
+{
+  "profile": {
+    "target_id": "TARGET-A-WEBAPP",
+    "name": "Apex Customer Portal",
+    "category": "WEB_APPLICATION",
+    "base_url": "http://127.0.0.1:8081/portal",
+    "auth_model": "Session Cookie + CSRF",
+    "technology_stack": "Node.js / Express / React",
+    "authorization_ref": "AUTH-APEX-2026-001",
+    "description": "Multi-tier customer management application with user profiles, billing history, and team sharing."
+  },
+  "authorization": {
+    "target_identifier": "TARGET-A-WEBAPP",
+    "authorized_by": "Apex Security Operations Lead",
+    "authorization_reference": "AUTH-APEX-2026-001",
+    "authorization_timestamp": "2026-01-01T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z",
+    "in_scope_assets": [
+      "127.0.0.1:8081",
+      "127.0.0.1"
+    ],
+    "excluded_assets": [
+      "127.0.0.1:8081/admin/internal/reboot",
+      "127.0.0.1:8081/super-admin"
+    ],
+    "permitted_testing": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "IDOR testing",
+      "BFLA testing",
+      "Session audit",
+      "PASSIVE_RECONNAISSANCE",
+      "RECONNAISSANCE"
+    ],
+    "prohibited_testing": [
+      "Denial of service",
+      "Data exfiltration beyond test accounts",
+      "Credential stuffing",
+      "Destructive drops"
+    ]
+  },
+  "authorization_hash": "7d3e694dc0762d856301fcaadc9a77a314ff60623b456e64d453deff50478941"
+}

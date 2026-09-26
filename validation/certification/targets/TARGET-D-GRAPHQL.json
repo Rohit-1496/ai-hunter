@@ -1,0 +1,40 @@
+{
+  "profile": {
+    "target_id": "TARGET-D-GRAPHQL",
+    "name": "Hyperion GraphQL Telemetry Mesh",
+    "category": "MODERN_API_GRAPHQL",
+    "base_url": "http://127.0.0.1:8084/graphql",
+    "auth_model": "Custom API Token + Tenant Organization Slug Header",
+    "technology_stack": "Rust / Apollo GraphQL / Distributed Graph",
+    "authorization_ref": "AUTH-HYPERION-2026-004",
+    "description": "GraphQL mesh gateway with field-level resolvers, batch queries, mutations, and tenant authorization directives."
+  },
+  "authorization": {
+    "target_identifier": "TARGET-D-GRAPHQL",
+    "authorized_by": "Head of Product Security, Hyperion Cloud",
+    "authorization_reference": "AUTH-HYPERION-2026-004",
+    "authorization_timestamp": "2026-01-01T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z",
+    "in_scope_assets": [
+      "127.0.0.1:8084",
+      "127.0.0.1"
+    ],
+    "excluded_assets": [
+      "127.0.0.1:8084/graphql/cluster-admin"
+    ],
+    "permitted_testing": [
+      "Introspection queries",
+      "Query depth attacks",
+      "Batch query testing",
+      "Field authorization bypass",
+      "PASSIVE_RECONNAISSANCE",
+      "RECONNAISSANCE"
+    ],
+    "prohibited_testing": [
+      "Distributed denial of service",
+      "Resource exhaustion exceeding memory quotas"
+    ]
+  },
+  "authorization_hash": "37aaf9355d98dc7bbfc566ab951590178dd2620a1b0415e466a2106d313b4461"
+}

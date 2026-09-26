@@ -1,0 +1,7 @@
+# AI Autonomous Bug Hunter — V1 Dependencies
+# Phase 1: MCP server adapter
+mcp>=2.1.1
+
+# No other external dependencies.
+# Python stdlib (pathlib, json, os, datetime, asyncio, unittest, subprocess)
+# covers everything else.

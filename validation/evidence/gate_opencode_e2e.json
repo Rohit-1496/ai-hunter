@@ -1,0 +1,362 @@
+{
+  "audit_id": "AUDIT-OPENCODE-C1716F87",
+  "timestamp": "2026-09-26T08:13:11Z",
+  "target": "127.0.0.1:41329",
+  "base_url": "http://127.0.0.1:41329",
+  "status": "PASSED",
+  "steps_executed": [
+    "MCP_SERVER_SPAWNED",
+    "MCP_INITIALIZED",
+    "TOOLS_DISCOVERED",
+    "STATUS_CHECKED",
+    "MISSION_CREATED",
+    "SCOPE_GATE_VERIFIED",
+    "ACTION_1_QUEUED",
+    "STEP_1_EXECUTED",
+    "BRAIN_STATE_AUDITED",
+    "BRAIN_DECIDED",
+    "STEP_2_PIVOT_EXECUTED",
+    "CHECKPOINT_SAVED"
+  ],
+  "mcp_calls": [
+    {
+      "stage": "INITIALIZE",
+      "method": "initialize",
+      "latency_ms": 1948.12,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "capabilities": {
+            "experimental": {},
+            "prompts": {
+              "listChanged": false
+            },
+            "resources": {
+              "listChanged": false,
+              "subscribe": false
+            },
+            "tools": {
+              "listChanged": false
+            }
+          },
+          "protocolVersion": "2024-11-05",
+          "serverInfo": {
+            "description": "Provides real Hunter Runtime health and handshake tools. All responses reflect actual subsystem state on disk \u2014 no values are hardcoded.",
+            "name": "hunter-runtime",
+            "title": "AI Autonomous Bug Hunter Runtime",
+            "version": "1.0.0-phase2"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_LIST",
+      "method": "tools/list",
+      "latency_ms": 4.75,
+      "tool_count": 18
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_status",
+      "arguments": {},
+      "latency_ms": 8.78,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "text": "Hunter: ONLINE\nOpenCode adapter: CONNECTED\nBrain: READY\nPersistent memory: READY\nScope gate: READY\nExecutor: READY\nSecurity graph: READY\nCheckpoint engine: READY\nActive mission: M-35AD327C\nRuntime version: 1.0.0-phase1\nStarted: 2026-09-26T08:13:13.228706+00:00",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "Hunter: ONLINE\nOpenCode adapter: CONNECTED\nBrain: READY\nPersistent memory: READY\nScope gate: READY\nExecutor: READY\nSecurity graph: READY\nCheckpoint engine: READY\nActive mission: M-35AD327C\nRuntime version: 1.0.0-phase1\nStarted: 2026-09-26T08:13:13.228706+00:00"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_mission_create",
+      "arguments": {
+        "operator_objective": "Map topology and investigate access control on authorized target",
+        "target_scope": [
+          "127.0.0.1:41329"
+        ]
+      },
+      "latency_ms": 39.13,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"_schema\": \"mission_state_v1\",\n  \"mission_id\": \"M-CFD925C6\",\n  \"created_at\": \"2026-09-26T08:13:13.239342+00:00\",\n  \"target_scope\": [\n    \"127.0.0.1:41329\"\n  ],\n  \"excluded_scope\": [],\n  \"operator_objective\": \"Map topology and investigate access control on authorized target\",\n  \"risk_policy\": \"MEDIUM\",\n  \"time_budget_hours\": null,\n  \"resource_budget\": {\n    \"max_requests_per_minute\": null,\n    \"max_concurrent_processes\": null\n  },\n  \"current_mode\": \"RECON\",\n  \"current_strategy\": \"Initial reconnaissance\",\n  \"active_objectives\": [],\n  \"status\": \"ACTIVE\",\n  \"last_checkpoint\": null,\n  \"environment_fingerprint\": null,\n  \"target_fingerprint\": null,\n  \"scope_status\": \"VALID\",\n  \"scope_reason\": \"SCOPE_VALID\",\n  \"authorization\": {\n    \"mission_id\": \"M-CFD925C6\",\n    \"status\": \"GRANTED\",\n    \"source\": \"OPERATOR_ATTESTATION\",\n    \"target_scope\": [\n      \"127.0.0.1:41329\"\n    ],\n    \"excluded_scope\": [],\n    \"scope_fingerprint\": \"7460c7f32cf15ec6e3acb93c2f20a8af2a3fdba37ecb02a17b3beedfe452704b\",\n    \"capabilities\": [\n      \"DNS_LOOKUP\",\n      \"HTTP_REQUEST\"\n    ],\n    \"issued_at\": \"2026-09-26T08:13:13.251284+00:00\",\n    \"expires_at\": \"2026-10-03T08:13:13.251284+00:00\",\n    \"audit_id\": \"AUTH-M-CFD925C6\",\n    \"policy_version\": \"phaseA-auth-v1\",\n    \"digest\": \"17ac6a2ffc98fc6d38d720becdffed2e59c38d7794d7ba4987f4ebf3f2c3a805\"\n  }\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"_schema\": \"mission_state_v1\",\n  \"mission_id\": \"M-CFD925C6\",\n  \"created_at\": \"2026-09-26T08:13:13.239342+00:00\",\n  \"target_scope\": [\n    \"127.0.0.1:41329\"\n  ],\n  \"excluded_scope\": [],\n  \"operator_objective\": \"Map topology and investigate access control on authorized target\",\n  \"risk_policy\": \"MEDIUM\",\n  \"time_budget_hours\": null,\n  \"resource_budget\": {\n    \"max_requests_per_minute\": null,\n    \"max_concurrent_processes\": null\n  },\n  \"current_mode\": \"RECON\",\n  \"current_strategy\": \"Initial reconnaissance\",\n  \"active_objectives\": [],\n  \"status\": \"ACTIVE\",\n  \"last_checkpoint\": null,\n  \"environment_fingerprint\": null,\n  \"target_fingerprint\": null,\n  \"scope_status\": \"VALID\",\n  \"scope_reason\": \"SCOPE_VALID\",\n  \"authorization\": {\n    \"mission_id\": \"M-CFD925C6\",\n    \"status\": \"GRANTED\",\n    \"source\": \"OPERATOR_ATTESTATION\",\n    \"target_scope\": [\n      \"127.0.0.1:41329\"\n    ],\n    \"excluded_scope\": [],\n    \"scope_fingerprint\": \"7460c7f32cf15ec6e3acb93c2f20a8af2a3fdba37ecb02a17b3beedfe452704b\",\n    \"capabilities\": [\n      \"DNS_LOOKUP\",\n      \"HTTP_REQUEST\"\n    ],\n    \"issued_at\": \"2026-09-26T08:13:13.251284+00:00\",\n    \"expires_at\": \"2026-10-03T08:13:13.251284+00:00\",\n    \"audit_id\": \"AUTH-M-CFD925C6\",\n    \"policy_version\": \"phaseA-auth-v1\",\n    \"digest\": \"17ac6a2ffc98fc6d38d720becdffed2e59c38d7794d7ba4987f4ebf3f2c3a805\"\n  }\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_action_propose",
+      "arguments": {
+        "mission_id": "M-CFD925C6",
+        "target": "http://malicious.external.attacker.com/api",
+        "objective": "Unauthorized out-of-scope test"
+      },
+      "latency_ms": 5.41,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "text": "{\"status\": \"REJECTED\", \"reason\": \"TARGET_OUT_OF_SCOPE\", \"details\": \"TARGET_HOST_malicious.external.attacker.com_NOT_IN_SCOPE\", \"target\": \"http://malicious.external.attacker.com\", \"scope\": [\"127.0.0.1:41329\"]}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\"status\": \"REJECTED\", \"reason\": \"TARGET_OUT_OF_SCOPE\", \"details\": \"TARGET_HOST_malicious.external.attacker.com_NOT_IN_SCOPE\", \"target\": \"http://malicious.external.attacker.com\", \"scope\": [\"127.0.0.1:41329\"]}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_action_propose",
+      "arguments": {
+        "mission_id": "M-CFD925C6",
+        "target": "http://127.0.0.1:41329/api/v1/system/status",
+        "capability_id": "HTTP_REQUEST",
+        "action_type": "DISCOVERY",
+        "objective": "Probe system status and discover exposed routes"
+      },
+      "latency_ms": 6.0,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"status\": \"QUEUED\",\n  \"action_id\": \"ACT-OP-FDE596\",\n  \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n  \"scope_alignment\": \"IN_SCOPE\",\n  \"note\": \"QUEUED for Brain consideration; execution requires independent scope revalidation.\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"status\": \"QUEUED\",\n  \"action_id\": \"ACT-OP-FDE596\",\n  \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n  \"scope_alignment\": \"IN_SCOPE\",\n  \"note\": \"QUEUED for Brain consideration; execution requires independent scope revalidation.\"\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_mission_step",
+      "arguments": {
+        "mission_id": "M-CFD925C6"
+      },
+      "latency_ms": 135.5,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"status\": \"STEP_COMPLETE\",\n  \"action\": \"ACT-OP-FDE596\",\n  \"evidence_id\": \"EVID-D48ECED4\",\n  \"pinned_ip\": null,\n  \"observations_extracted\": 1,\n  \"observations_kept\": 1,\n  \"graph_nodes_added\": 2,\n  \"graph_rels_added\": 0,\n  \"discovery_novelty\": 1.0,\n  \"coverage_gaps\": 8,\n  \"snapshot_id\": \"SNAP-1-0f51c2ff5874\",\n  \"hypotheses_count\": 1,\n  \"validated_findings\": 0,\n  \"attack_paths_count\": 0,\n  \"validated_attack_paths\": 0,\n  \"compound_findings\": 0,\n  \"research_directions_count\": 0,\n  \"pivots_count\": 0,\n  \"security_model_version\": 1,\n  \"recent_pivot\": null,\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-FDE596\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 7.2,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": []\n  },\n  \"orchestration_events\": [\n    {\n      \"type\": \"DEPENDENCY_SATISFIED\",\n      \"dependency_id\": \"DEP-AUTH-ADMIN\",\n      \"target_thread_id\": \"TH-ADMIN\",\n      \"source_thread_id\": \"TH-RECON\",\n      \"evidence_id\": \"EVID-D48ECED4\"\n    },\n    {\n      \"type\": \"THREAD_UNBLOCKED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Dependencies satisfied by Thread TH-RECON\"\n    },\n    {\n      \"type\": \"THREAD_BOOSTED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Admin capability correlated from cross-thread evidence\"\n    }\n  ]\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"status\": \"STEP_COMPLETE\",\n  \"action\": \"ACT-OP-FDE596\",\n  \"evidence_id\": \"EVID-D48ECED4\",\n  \"pinned_ip\": null,\n  \"observations_extracted\": 1,\n  \"observations_kept\": 1,\n  \"graph_nodes_added\": 2,\n  \"graph_rels_added\": 0,\n  \"discovery_novelty\": 1.0,\n  \"coverage_gaps\": 8,\n  \"snapshot_id\": \"SNAP-1-0f51c2ff5874\",\n  \"hypotheses_count\": 1,\n  \"validated_findings\": 0,\n  \"attack_paths_count\": 0,\n  \"validated_attack_paths\": 0,\n  \"compound_findings\": 0,\n  \"research_directions_count\": 0,\n  \"pivots_count\": 0,\n  \"security_model_version\": 1,\n  \"recent_pivot\": null,\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-FDE596\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 7.2,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": []\n  },\n  \"orchestration_events\": [\n    {\n      \"type\": \"DEPENDENCY_SATISFIED\",\n      \"dependency_id\": \"DEP-AUTH-ADMIN\",\n      \"target_thread_id\": \"TH-ADMIN\",\n      \"source_thread_id\": \"TH-RECON\",\n      \"evidence_id\": \"EVID-D48ECED4\"\n    },\n    {\n      \"type\": \"THREAD_UNBLOCKED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Dependencies satisfied by Thread TH-RECON\"\n    },\n    {\n      \"type\": \"THREAD_BOOSTED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Admin capability correlated from cross-thread evidence\"\n    }\n  ]\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_brain_status",
+      "arguments": {},
+      "latency_ms": 4.72,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"observations\": [\n    {\n      \"id\": \"OBS-E5A2FF00\",\n      \"type\": \"TOOL_STDOUT\",\n      \"source\": \"extractor\",\n      \"fact\": \"Tool output line: {\\\"service\\\": \\\"Core Enterprise Portal\\\", \\\"status\\\": \\\"ONLINE\\\", \\\"version\\\": \\\"1.0.4\\\", \\\"auth_endpoint\\\": \\\"/api/v1/user/profile\\\", \\\"admin_endpoint\\\": \\\"/api/v1/admin/debug\\\", \\\"available_roles\\\": [\\\"guest\\\", \\\"analyst\\\", \\\"administrator\\\"], \\\"message\\\": \\\"Authorized target execution confirmed.\\\"}\",\n      \"confidence\": 1.0,\n      \"evidence_refs\": [\n        \"EVID-D48ECED4\"\n      ],\n      \"created_at\": \"2026-09-26T08:13:13.349435+00:00\",\n      \"tags\": []\n    }\n  ],\n  \"interpretations\": [],\n  \"hypotheses\": [\n    {\n      \"id\": \"HYP-AUTH-6723F721\",\n      \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/system/status\",\n      \"state\": \"NEW\",\n      \"confidence\": 0.0,\n      \"created_at\": \"2026-09-26T08:13:13.354616+00:00\",\n      \"updated_at\": \"2026-09-26T08:13:13.354624+00:00\",\n      \"supporting_evidence\": [\n        \"EVID-D48ECED4\"\n      ],\n      \"contradicting_evidence\": [],\n      \"unknowns\": [],\n      \"related_assets\": [],\n      \"related_actions\": [],\n      \"last_tested\": null,\n      \"next_discriminating_action\": null,\n      \"kill_reason\": null\n    }\n  ],\n  \"unknowns\": [],\n  \"candidate_actions\": [\n    {\n      \"id\": \"ACT-OP-FDE596\",\n      \"action_type\": \"DISCOVERY\",\n      \"objective\": \"Probe system status and discover exposed routes\",\n      \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n      \"capability_id\": \"HTTP_REQUEST\",\n      \"input_parameters\": {\n        \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n        \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n      },\n      \"related_hypotheses\": [],\n      \"related_unknowns\": [],\n      \"expected_information_gain\": 0.9,\n      \"expected_security_value\": 0.8,\n      \"risk\": 0.0,\n      \"estimated_cost\": 0.0,\n      \"reason\": \"\",\n      \"variable_changed\": null,\n      \"controls\": {},\n      \"scope_alignment\": \"IN_SCOPE\"\n    }\n  ],\n  \"negative_knowledge\": [],\n  \"action_execution_counts\": {\n    \"ACT-OP-FDE596\": 1\n  }\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"observations\": [\n    {\n      \"id\": \"OBS-E5A2FF00\",\n      \"type\": \"TOOL_STDOUT\",\n      \"source\": \"extractor\",\n      \"fact\": \"Tool output line: {\\\"service\\\": \\\"Core Enterprise Portal\\\", \\\"status\\\": \\\"ONLINE\\\", \\\"version\\\": \\\"1.0.4\\\", \\\"auth_endpoint\\\": \\\"/api/v1/user/profile\\\", \\\"admin_endpoint\\\": \\\"/api/v1/admin/debug\\\", \\\"available_roles\\\": [\\\"guest\\\", \\\"analyst\\\", \\\"administrator\\\"], \\\"message\\\": \\\"Authorized target execution confirmed.\\\"}\",\n      \"confidence\": 1.0,\n      \"evidence_refs\": [\n        \"EVID-D48ECED4\"\n      ],\n      \"created_at\": \"2026-09-26T08:13:13.349435+00:00\",\n      \"tags\": []\n    }\n  ],\n  \"interpretations\": [],\n  \"hypotheses\": [\n    {\n      \"id\": \"HYP-AUTH-6723F721\",\n      \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/system/status\",\n      \"state\": \"NEW\",\n      \"confidence\": 0.0,\n      \"created_at\": \"2026-09-26T08:13:13.354616+00:00\",\n      \"updated_at\": \"2026-09-26T08:13:13.354624+00:00\",\n      \"supporting_evidence\": [\n        \"EVID-D48ECED4\"\n      ],\n      \"contradicting_evidence\": [],\n      \"unknowns\": [],\n      \"related_assets\": [],\n      \"related_actions\": [],\n      \"last_tested\": null,\n      \"next_discriminating_action\": null,\n      \"kill_reason\": null\n    }\n  ],\n  \"unknowns\": [],\n  \"candidate_actions\": [\n    {\n      \"id\": \"ACT-OP-FDE596\",\n      \"action_type\": \"DISCOVERY\",\n      \"objective\": \"Probe system status and discover exposed routes\",\n      \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n      \"capability_id\": \"HTTP_REQUEST\",\n      \"input_parameters\": {\n        \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n        \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n      },\n      \"related_hypotheses\": [],\n      \"related_unknowns\": [],\n      \"expected_information_gain\": 0.9,\n      \"expected_security_value\": 0.8,\n      \"risk\": 0.0,\n      \"estimated_cost\": 0.0,\n      \"reason\": \"\",\n      \"variable_changed\": null,\n      \"controls\": {},\n      \"scope_alignment\": \"IN_SCOPE\"\n    }\n  ],\n  \"negative_knowledge\": [],\n  \"action_execution_counts\": {\n    \"ACT-OP-FDE596\": 1\n  }\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_brain_decide",
+      "arguments": {},
+      "latency_ms": 3.92,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 9,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"selected_action\": {\n    \"id\": \"ACT-OP-FDE596\",\n    \"action_type\": \"DISCOVERY\",\n    \"objective\": \"Probe system status and discover exposed routes\",\n    \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n    \"capability_id\": \"HTTP_REQUEST\",\n    \"input_parameters\": {\n      \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n      \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n    },\n    \"related_hypotheses\": [],\n    \"related_unknowns\": [],\n    \"expected_information_gain\": 0.9,\n    \"expected_security_value\": 0.8,\n    \"risk\": 0.0,\n    \"estimated_cost\": 0.0,\n    \"reason\": \"\",\n    \"variable_changed\": null,\n    \"controls\": {},\n    \"scope_alignment\": \"IN_SCOPE\"\n  },\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-FDE596\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 4.32,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": []\n  }\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"selected_action\": {\n    \"id\": \"ACT-OP-FDE596\",\n    \"action_type\": \"DISCOVERY\",\n    \"objective\": \"Probe system status and discover exposed routes\",\n    \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n    \"capability_id\": \"HTTP_REQUEST\",\n    \"input_parameters\": {\n      \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n      \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n    },\n    \"related_hypotheses\": [],\n    \"related_unknowns\": [],\n    \"expected_information_gain\": 0.9,\n    \"expected_security_value\": 0.8,\n    \"risk\": 0.0,\n    \"estimated_cost\": 0.0,\n    \"reason\": \"\",\n    \"variable_changed\": null,\n    \"controls\": {},\n    \"scope_alignment\": \"IN_SCOPE\"\n  },\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-FDE596\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 4.32,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": []\n  }\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_action_propose",
+      "arguments": {
+        "mission_id": "M-CFD925C6",
+        "target": "http://127.0.0.1:41329/api/v1/admin/debug",
+        "capability_id": "HTTP_REQUEST",
+        "action_type": "EXPERIMENT",
+        "objective": "Verify administrative boundary authorization"
+      },
+      "latency_ms": 4.27,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"status\": \"QUEUED\",\n  \"action_id\": \"ACT-OP-258B16\",\n  \"target\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n  \"scope_alignment\": \"IN_SCOPE\",\n  \"note\": \"QUEUED for Brain consideration; execution requires independent scope revalidation.\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"status\": \"QUEUED\",\n  \"action_id\": \"ACT-OP-258B16\",\n  \"target\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n  \"scope_alignment\": \"IN_SCOPE\",\n  \"note\": \"QUEUED for Brain consideration; execution requires independent scope revalidation.\"\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_mission_step",
+      "arguments": {
+        "mission_id": "M-CFD925C6"
+      },
+      "latency_ms": 50.43,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"status\": \"STEP_COMPLETE\",\n  \"action\": \"ACT-OP-258B16\",\n  \"evidence_id\": \"EVID-EEA36576\",\n  \"pinned_ip\": null,\n  \"observations_extracted\": 1,\n  \"observations_kept\": 2,\n  \"graph_nodes_added\": 1,\n  \"graph_rels_added\": 0,\n  \"discovery_novelty\": 0.5,\n  \"coverage_gaps\": 8,\n  \"snapshot_id\": \"SNAP-2-058150871f5b\",\n  \"hypotheses_count\": 2,\n  \"validated_findings\": 0,\n  \"attack_paths_count\": 0,\n  \"validated_attack_paths\": 0,\n  \"compound_findings\": 0,\n  \"research_directions_count\": 1,\n  \"pivots_count\": 1,\n  \"security_model_version\": 2,\n  \"recent_pivot\": {\n    \"id\": \"PIVOT-5D248601\",\n    \"mission_id\": \"M-CFD925C6\",\n    \"from_direction\": \"Verify administrative boundary authorization\",\n    \"to_direction\": \"Investigate horizontal identity boundary across distinct tenant contexts\",\n    \"trigger\": \"AUTHORIZATION_BLOCK on http://127.0.0.1:41329/api/v1/admin/debug\",\n    \"reason\": \"Pivoting because Authorization block on http://127.0.0.1:41329/api/v1/admin/debug: Server enforces independent server-side permission check rejecting unprivileged or transferred credentials.. Selected highest expected-value direction (0.8393): Probe whether tenant isolation prevents cross-tenant access independent of individual roles\",\n    \"evidence_refs\": [\n      \"EVID-EEA36576\"\n    ],\n    \"failed_actions\": [\n      \"ACT-OP-258B16\"\n    ],\n    \"new_unknowns\": [\n      \"Does an alternate API version or workflow route exist that omits this authorization gate?\"\n    ],\n    \"expected_gain\": 0.8,\n    \"cost\": 0.15,\n    \"risk\": 0.1,\n    \"status\": \"EXECUTED\",\n    \"created_at\": \"2026-09-26T08:13:13.482081+00:00\"\n  },\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-258B16\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 7.2,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": [\n      {\n        \"action_id\": \"ACT-OP-FDE596\",\n        \"action_type\": \"DISCOVERY\",\n        \"reason\": \"Lower information gain/security value score (1.44 vs 7.20)\"\n      }\n    ]\n  },\n  \"orchestration_events\": [\n    {\n      \"type\": \"THREAD_BOOSTED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Admin capability correlated from cross-thread evidence\"\n    }\n  ]\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"status\": \"STEP_COMPLETE\",\n  \"action\": \"ACT-OP-258B16\",\n  \"evidence_id\": \"EVID-EEA36576\",\n  \"pinned_ip\": null,\n  \"observations_extracted\": 1,\n  \"observations_kept\": 2,\n  \"graph_nodes_added\": 1,\n  \"graph_rels_added\": 0,\n  \"discovery_novelty\": 0.5,\n  \"coverage_gaps\": 8,\n  \"snapshot_id\": \"SNAP-2-058150871f5b\",\n  \"hypotheses_count\": 2,\n  \"validated_findings\": 0,\n  \"attack_paths_count\": 0,\n  \"validated_attack_paths\": 0,\n  \"compound_findings\": 0,\n  \"research_directions_count\": 1,\n  \"pivots_count\": 1,\n  \"security_model_version\": 2,\n  \"recent_pivot\": {\n    \"id\": \"PIVOT-5D248601\",\n    \"mission_id\": \"M-CFD925C6\",\n    \"from_direction\": \"Verify administrative boundary authorization\",\n    \"to_direction\": \"Investigate horizontal identity boundary across distinct tenant contexts\",\n    \"trigger\": \"AUTHORIZATION_BLOCK on http://127.0.0.1:41329/api/v1/admin/debug\",\n    \"reason\": \"Pivoting because Authorization block on http://127.0.0.1:41329/api/v1/admin/debug: Server enforces independent server-side permission check rejecting unprivileged or transferred credentials.. Selected highest expected-value direction (0.8393): Probe whether tenant isolation prevents cross-tenant access independent of individual roles\",\n    \"evidence_refs\": [\n      \"EVID-EEA36576\"\n    ],\n    \"failed_actions\": [\n      \"ACT-OP-258B16\"\n    ],\n    \"new_unknowns\": [\n      \"Does an alternate API version or workflow route exist that omits this authorization gate?\"\n    ],\n    \"expected_gain\": 0.8,\n    \"cost\": 0.15,\n    \"risk\": 0.1,\n    \"status\": \"EXECUTED\",\n    \"created_at\": \"2026-09-26T08:13:13.482081+00:00\"\n  },\n  \"rationale\": {\n    \"action_id\": \"ACT-OP-258B16\",\n    \"decision_type\": \"CONTINUE\",\n    \"why\": \"Highest value safe action identified.\",\n    \"expected_value\": 7.2,\n    \"risk\": 0.0,\n    \"alternatives_rejected\": [\n      {\n        \"action_id\": \"ACT-OP-FDE596\",\n        \"action_type\": \"DISCOVERY\",\n        \"reason\": \"Lower information gain/security value score (1.44 vs 7.20)\"\n      }\n    ]\n  },\n  \"orchestration_events\": [\n    {\n      \"type\": \"THREAD_BOOSTED\",\n      \"thread_id\": \"TH-ADMIN\",\n      \"reason\": \"Admin capability correlated from cross-thread evidence\"\n    }\n  ]\n}"
+          }
+        }
+      }
+    },
+    {
+      "stage": "TOOLS_CALL",
+      "tool": "hunter_mission_checkpoint",
+      "arguments": {
+        "mission_id": "M-CFD925C6"
+      },
+      "latency_ms": 36.25,
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "result": {
+          "content": [
+            {
+              "text": "{\n  \"_schema\": \"resume_capsule_v2\",\n  \"mission_id\": \"M-CFD925C6\",\n  \"checkpoint_id\": \"capsule_00001\",\n  \"sequence_number\": 1,\n  \"parent_checkpoint_id\": null,\n  \"capsule_created_at\": \"2026-09-26T08:13:13.489725+00:00\",\n  \"scope_summary\": \"127.0.0.1:41329\",\n  \"scope_fingerprint\": \"7460c7f32cf15ec6e3acb93c2f20a8af2a3fdba37ecb02a17b3beedfe452704b\",\n  \"authorization_digest\": \"17ac6a2ffc98fc6d38d720becdffed2e59c38d7794d7ba4987f4ebf3f2c3a805\",\n  \"policy_version\": \"phase-a-v1\",\n  \"strategy\": \"Initial reconnaissance\",\n  \"active_objectives\": [],\n  \"important_discoveries\": [\n    \"(Phase 2: Graph not yet implemented)\"\n  ],\n  \"active_hypotheses\": [\n    \"(Phase 2: Hypothesis engine not yet implemented)\"\n  ],\n  \"relevant_negative_knowledge\": [\n    \"(Phase 2: Not yet implemented)\"\n  ],\n  \"highest_value_unknowns\": [\n    \"(Phase 2: Not yet implemented)\"\n  ],\n  \"current_attack_paths\": [\n    \"(Phase 2: Attack modeling not yet implemented)\"\n  ],\n  \"recent_evidence_refs\": [\n    \"(Phase 2: Evidence tracking not yet implemented)\"\n  ],\n  \"coverage_gaps\": [\n    \"(Phase 2: Coverage engine not yet implemented)\"\n  ],\n  \"remaining_resources\": {\n    \"max_requests_per_minute\": null,\n    \"max_concurrent_processes\": null\n  },\n  \"last_checkpoint\": null,\n  \"target_changes_detected\": false,\n  \"brain_state\": {\n    \"observations\": [\n      {\n        \"id\": \"OBS-E5A2FF00\",\n        \"type\": \"TOOL_STDOUT\",\n        \"source\": \"extractor\",\n        \"fact\": \"Tool output line: {\\\"service\\\": \\\"Core Enterprise Portal\\\", \\\"status\\\": \\\"ONLINE\\\", \\\"version\\\": \\\"1.0.4\\\", \\\"auth_endpoint\\\": \\\"/api/v1/user/profile\\\", \\\"admin_endpoint\\\": \\\"/api/v1/admin/debug\\\", \\\"available_roles\\\": [\\\"guest\\\", \\\"analyst\\\", \\\"administrator\\\"], \\\"message\\\": \\\"Authorized target execution confirmed.\\\"}\",\n        \"confidence\": 1.0,\n        \"evidence_refs\": [\n          \"EVID-D48ECED4\"\n        ],\n        \"created_at\": \"2026-09-26T08:13:13.349435+00:00\",\n        \"tags\": []\n      },\n      {\n        \"id\": \"OBS-AD4DCED0\",\n        \"type\": \"TOOL_STDOUT\",\n        \"source\": \"extractor\",\n        \"fact\": \"Tool output line: {\\\"error\\\": \\\"Forbidden\\\", \\\"status\\\": 403, \\\"message\\\": \\\"Administrative privilege required. Direct access denied.\\\", \\\"hint\\\": \\\"Try elevated session or v2 API endpoint.\\\"}\",\n        \"confidence\": 1.0,\n        \"evidence_refs\": [\n          \"EVID-EEA36576\"\n        ],\n        \"created_at\": \"2026-09-26T08:13:13.478814+00:00\",\n        \"tags\": []\n      }\n    ],\n    \"interpretations\": [],\n    \"hypotheses\": [\n      {\n        \"id\": \"HYP-AUTH-6723F721\",\n        \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/system/status\",\n        \"state\": \"NEW\",\n        \"confidence\": 0.0,\n        \"created_at\": \"2026-09-26T08:13:13.354616+00:00\",\n        \"updated_at\": \"2026-09-26T08:13:13.354624+00:00\",\n        \"supporting_evidence\": [\n          \"EVID-D48ECED4\"\n        ],\n        \"contradicting_evidence\": [],\n        \"unknowns\": [],\n        \"related_assets\": [],\n        \"related_actions\": [],\n        \"last_tested\": null,\n        \"next_discriminating_action\": null,\n        \"kill_reason\": null\n      },\n      {\n        \"id\": \"HYP-AUTH-85D7EFD0\",\n        \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/admin/debug\",\n        \"state\": \"NEW\",\n        \"confidence\": 0.0,\n        \"created_at\": \"2026-09-26T08:13:13.481076+00:00\",\n        \"updated_at\": \"2026-09-26T08:13:13.481079+00:00\",\n        \"supporting_evidence\": [],\n        \"contradicting_evidence\": [\n          \"EVID-EEA36576\"\n        ],\n        \"unknowns\": [],\n        \"related_assets\": [],\n        \"related_actions\": [],\n        \"last_tested\": null,\n        \"next_discriminating_action\": null,\n        \"kill_reason\": null\n      }\n    ],\n    \"unknowns\": [\n      {\n        \"id\": \"UNK-PIVOT-AA6B9C\",\n        \"type\": \"UNKNOWN\",\n        \"statement\": \"Does an alternate API version or workflow route exist that omits this authorization gate?\",\n        \"importance\": 0.9,\n        \"status\": \"UNKNOWN\",\n        \"created_at\": \"2026-09-26T08:13:13.481952+00:00\",\n        \"resolved_by_observation_id\": null\n      }\n    ],\n    \"candidate_actions\": [\n      {\n        \"id\": \"ACT-OP-FDE596\",\n        \"action_type\": \"DISCOVERY\",\n        \"objective\": \"Probe system status and discover exposed routes\",\n        \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n        \"capability_id\": \"HTTP_REQUEST\",\n        \"input_parameters\": {\n          \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n          \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n        },\n        \"related_hypotheses\": [],\n        \"related_unknowns\": [],\n        \"expected_information_gain\": 0.9,\n        \"expected_security_value\": 0.8,\n        \"risk\": 0.0,\n        \"estimated_cost\": 0.0,\n        \"reason\": \"\",\n        \"variable_changed\": null,\n        \"controls\": {},\n        \"scope_alignment\": \"IN_SCOPE\"\n      },\n      {\n        \"id\": \"ACT-OP-258B16\",\n        \"action_type\": \"EXPERIMENT\",\n        \"objective\": \"Verify administrative boundary authorization\",\n        \"target\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n        \"capability_id\": \"HTTP_REQUEST\",\n        \"input_parameters\": {\n          \"url\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n          \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-258B16_headers.txt\"\n        },\n        \"related_hypotheses\": [],\n        \"related_unknowns\": [],\n        \"expected_information_gain\": 0.9,\n        \"expected_security_value\": 0.8,\n        \"risk\": 0.0,\n        \"estimated_cost\": 0.0,\n        \"reason\": \"\",\n        \"variable_changed\": null,\n        \"controls\": {},\n        \"scope_alignment\": \"IN_SCOPE\"\n      }\n    ],\n    \"negative_knowledge\": [],\n    \"action_execution_counts\": {\n      \"ACT-OP-FDE596\": 2,\n      \"ACT-OP-258B16\": 1\n    }\n  },\n  \"graph_summary\": {\n    \"nodes_count\": 3,\n    \"relationships_count\": 0\n  },\n  \"coverage_summary\": {\n    \"dimensions_count\": 9,\n    \"gaps_count\": 8,\n    \"total_entities\": 3\n  },\n  \"vulnerability_summary\": {\n    \"active_hypotheses_count\": 1,\n    \"killed_hypotheses_count\": 1,\n    \"validated_findings_count\": 0,\n    \"negative_knowledge_count\": 1\n  },\n  \"attack_chain_summary\": {\n    \"total_attack_paths_count\": 0,\n    \"validated_attack_paths_count\": 0,\n    \"blocked_attack_paths_count\": 0,\n    \"compound_findings_count\": 0,\n    \"negative_chain_knowledge_count\": 0\n  },\n  \"adaptive_research_summary\": {\n    \"model_version\": 2,\n    \"research_directions_count\": 1,\n    \"pivots_count\": 1,\n    \"deltas_count\": 1,\n    \"diagnoses_count\": 1\n  },\n  \"orchestration_summary\": {\n    \"is_paused\": false,\n    \"active_objective_ids\": [\n      \"OBJ-RECON\",\n      \"OBJ-AUTH\",\n      \"OBJ-ADMIN\",\n      \"OBJ-TENANT\"\n    ],\n    \"active_thread_ids\": [\n      \"TH-RECON\",\n      \"TH-AUTH\",\n      \"TH-ADMIN\",\n      \"TH-TENANT\"\n    ],\n    \"top_priority_thread_id\": \"TH-RECON\",\n    \"total_objectives_count\": 4,\n    \"total_threads_count\": 4,\n    \"blocked_threads_count\": 0,\n    \"low_yield_threads_count\": 0,\n    \"budget_consumed_execution\": 5.0,\n    \"budget_remaining_execution\": 95.0\n  },\n  \"integrity_digest\": \"7ebff04b182d58f0ea3561a5d130ef7920f2657e7836075f5b24bda819663b73\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "structuredContent": {
+            "result": "{\n  \"_schema\": \"resume_capsule_v2\",\n  \"mission_id\": \"M-CFD925C6\",\n  \"checkpoint_id\": \"capsule_00001\",\n  \"sequence_number\": 1,\n  \"parent_checkpoint_id\": null,\n  \"capsule_created_at\": \"2026-09-26T08:13:13.489725+00:00\",\n  \"scope_summary\": \"127.0.0.1:41329\",\n  \"scope_fingerprint\": \"7460c7f32cf15ec6e3acb93c2f20a8af2a3fdba37ecb02a17b3beedfe452704b\",\n  \"authorization_digest\": \"17ac6a2ffc98fc6d38d720becdffed2e59c38d7794d7ba4987f4ebf3f2c3a805\",\n  \"policy_version\": \"phase-a-v1\",\n  \"strategy\": \"Initial reconnaissance\",\n  \"active_objectives\": [],\n  \"important_discoveries\": [\n    \"(Phase 2: Graph not yet implemented)\"\n  ],\n  \"active_hypotheses\": [\n    \"(Phase 2: Hypothesis engine not yet implemented)\"\n  ],\n  \"relevant_negative_knowledge\": [\n    \"(Phase 2: Not yet implemented)\"\n  ],\n  \"highest_value_unknowns\": [\n    \"(Phase 2: Not yet implemented)\"\n  ],\n  \"current_attack_paths\": [\n    \"(Phase 2: Attack modeling not yet implemented)\"\n  ],\n  \"recent_evidence_refs\": [\n    \"(Phase 2: Evidence tracking not yet implemented)\"\n  ],\n  \"coverage_gaps\": [\n    \"(Phase 2: Coverage engine not yet implemented)\"\n  ],\n  \"remaining_resources\": {\n    \"max_requests_per_minute\": null,\n    \"max_concurrent_processes\": null\n  },\n  \"last_checkpoint\": null,\n  \"target_changes_detected\": false,\n  \"brain_state\": {\n    \"observations\": [\n      {\n        \"id\": \"OBS-E5A2FF00\",\n        \"type\": \"TOOL_STDOUT\",\n        \"source\": \"extractor\",\n        \"fact\": \"Tool output line: {\\\"service\\\": \\\"Core Enterprise Portal\\\", \\\"status\\\": \\\"ONLINE\\\", \\\"version\\\": \\\"1.0.4\\\", \\\"auth_endpoint\\\": \\\"/api/v1/user/profile\\\", \\\"admin_endpoint\\\": \\\"/api/v1/admin/debug\\\", \\\"available_roles\\\": [\\\"guest\\\", \\\"analyst\\\", \\\"administrator\\\"], \\\"message\\\": \\\"Authorized target execution confirmed.\\\"}\",\n        \"confidence\": 1.0,\n        \"evidence_refs\": [\n          \"EVID-D48ECED4\"\n        ],\n        \"created_at\": \"2026-09-26T08:13:13.349435+00:00\",\n        \"tags\": []\n      },\n      {\n        \"id\": \"OBS-AD4DCED0\",\n        \"type\": \"TOOL_STDOUT\",\n        \"source\": \"extractor\",\n        \"fact\": \"Tool output line: {\\\"error\\\": \\\"Forbidden\\\", \\\"status\\\": 403, \\\"message\\\": \\\"Administrative privilege required. Direct access denied.\\\", \\\"hint\\\": \\\"Try elevated session or v2 API endpoint.\\\"}\",\n        \"confidence\": 1.0,\n        \"evidence_refs\": [\n          \"EVID-EEA36576\"\n        ],\n        \"created_at\": \"2026-09-26T08:13:13.478814+00:00\",\n        \"tags\": []\n      }\n    ],\n    \"interpretations\": [],\n    \"hypotheses\": [\n      {\n        \"id\": \"HYP-AUTH-6723F721\",\n        \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/system/status\",\n        \"state\": \"NEW\",\n        \"confidence\": 0.0,\n        \"created_at\": \"2026-09-26T08:13:13.354616+00:00\",\n        \"updated_at\": \"2026-09-26T08:13:13.354624+00:00\",\n        \"supporting_evidence\": [\n          \"EVID-D48ECED4\"\n        ],\n        \"contradicting_evidence\": [],\n        \"unknowns\": [],\n        \"related_assets\": [],\n        \"related_actions\": [],\n        \"last_tested\": null,\n        \"next_discriminating_action\": null,\n        \"kill_reason\": null\n      },\n      {\n        \"id\": \"HYP-AUTH-85D7EFD0\",\n        \"statement\": \"Authentication Bypass on Protected Endpoint /api/v1/admin/debug\",\n        \"state\": \"NEW\",\n        \"confidence\": 0.0,\n        \"created_at\": \"2026-09-26T08:13:13.481076+00:00\",\n        \"updated_at\": \"2026-09-26T08:13:13.481079+00:00\",\n        \"supporting_evidence\": [],\n        \"contradicting_evidence\": [\n          \"EVID-EEA36576\"\n        ],\n        \"unknowns\": [],\n        \"related_assets\": [],\n        \"related_actions\": [],\n        \"last_tested\": null,\n        \"next_discriminating_action\": null,\n        \"kill_reason\": null\n      }\n    ],\n    \"unknowns\": [\n      {\n        \"id\": \"UNK-PIVOT-AA6B9C\",\n        \"type\": \"UNKNOWN\",\n        \"statement\": \"Does an alternate API version or workflow route exist that omits this authorization gate?\",\n        \"importance\": 0.9,\n        \"status\": \"UNKNOWN\",\n        \"created_at\": \"2026-09-26T08:13:13.481952+00:00\",\n        \"resolved_by_observation_id\": null\n      }\n    ],\n    \"candidate_actions\": [\n      {\n        \"id\": \"ACT-OP-FDE596\",\n        \"action_type\": \"DISCOVERY\",\n        \"objective\": \"Probe system status and discover exposed routes\",\n        \"target\": \"http://127.0.0.1:41329/api/v1/system/status\",\n        \"capability_id\": \"HTTP_REQUEST\",\n        \"input_parameters\": {\n          \"url\": \"http://127.0.0.1:41329/api/v1/system/status\",\n          \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-FDE596_headers.txt\"\n        },\n        \"related_hypotheses\": [],\n        \"related_unknowns\": [],\n        \"expected_information_gain\": 0.9,\n        \"expected_security_value\": 0.8,\n        \"risk\": 0.0,\n        \"estimated_cost\": 0.0,\n        \"reason\": \"\",\n        \"variable_changed\": null,\n        \"controls\": {},\n        \"scope_alignment\": \"IN_SCOPE\"\n      },\n      {\n        \"id\": \"ACT-OP-258B16\",\n        \"action_type\": \"EXPERIMENT\",\n        \"objective\": \"Verify administrative boundary authorization\",\n        \"target\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n        \"capability_id\": \"HTTP_REQUEST\",\n        \"input_parameters\": {\n          \"url\": \"http://127.0.0.1:41329/api/v1/admin/debug\",\n          \"header_file_path\": \"/home/kali/Downloads/ai-hunter/workspace/raw/M-CFD925C6/headers/ACT-OP-258B16_headers.txt\"\n        },\n        \"related_hypotheses\": [],\n        \"related_unknowns\": [],\n        \"expected_information_gain\": 0.9,\n        \"expected_security_value\": 0.8,\n        \"risk\": 0.0,\n        \"estimated_cost\": 0.0,\n        \"reason\": \"\",\n        \"variable_changed\": null,\n        \"controls\": {},\n        \"scope_alignment\": \"IN_SCOPE\"\n      }\n    ],\n    \"negative_knowledge\": [],\n    \"action_execution_counts\": {\n      \"ACT-OP-FDE596\": 2,\n      \"ACT-OP-258B16\": 1\n    }\n  },\n  \"graph_summary\": {\n    \"nodes_count\": 3,\n    \"relationships_count\": 0\n  },\n  \"coverage_summary\": {\n    \"dimensions_count\": 9,\n    \"gaps_count\": 8,\n    \"total_entities\": 3\n  },\n  \"vulnerability_summary\": {\n    \"active_hypotheses_count\": 1,\n    \"killed_hypotheses_count\": 1,\n    \"validated_findings_count\": 0,\n    \"negative_knowledge_count\": 1\n  },\n  \"attack_chain_summary\": {\n    \"total_attack_paths_count\": 0,\n    \"validated_attack_paths_count\": 0,\n    \"blocked_attack_paths_count\": 0,\n    \"compound_findings_count\": 0,\n    \"negative_chain_knowledge_count\": 0\n  },\n  \"adaptive_research_summary\": {\n    \"model_version\": 2,\n    \"research_directions_count\": 1,\n    \"pivots_count\": 1,\n    \"deltas_count\": 1,\n    \"diagnoses_count\": 1\n  },\n  \"orchestration_summary\": {\n    \"is_paused\": false,\n    \"active_objective_ids\": [\n      \"OBJ-RECON\",\n      \"OBJ-AUTH\",\n      \"OBJ-ADMIN\",\n      \"OBJ-TENANT\"\n    ],\n    \"active_thread_ids\": [\n      \"TH-RECON\",\n      \"TH-AUTH\",\n      \"TH-ADMIN\",\n      \"TH-TENANT\"\n    ],\n    \"top_priority_thread_id\": \"TH-RECON\",\n    \"total_objectives_count\": 4,\n    \"total_threads_count\": 4,\n    \"blocked_threads_count\": 0,\n    \"low_yield_threads_count\": 0,\n    \"budget_consumed_execution\": 5.0,\n    \"budget_remaining_execution\": 95.0\n  },\n  \"integrity_digest\": \"7ebff04b182d58f0ea3561a5d130ef7920f2657e7836075f5b24bda819663b73\"\n}"
+          }
+        }
+      }
+    }
+  ],
+  "p5_executions": [
+    {
+      "step": 1,
+      "action_id": "ACT-OP-FDE596",
+      "target": "http://127.0.0.1:41329/api/v1/system/status",
+      "evidence_id": "EVID-D48ECED4",
+      "graph_nodes_added": 2,
+      "observations_kept": 1
+    },
+    {
+      "step": 2,
+      "target": "http://127.0.0.1:41329/api/v1/admin/debug",
+      "evidence_id": "EVID-EEA36576",
+      "recent_pivot": {
+        "id": "PIVOT-5D248601",
+        "mission_id": "M-CFD925C6",
+        "from_direction": "Verify administrative boundary authorization",
+        "to_direction": "Investigate horizontal identity boundary across distinct tenant contexts",
+        "trigger": "AUTHORIZATION_BLOCK on http://127.0.0.1:41329/api/v1/admin/debug",
+        "reason": "Pivoting because Authorization block on http://127.0.0.1:41329/api/v1/admin/debug: Server enforces independent server-side permission check rejecting unprivileged or transferred credentials.. Selected highest expected-value direction (0.8393): Probe whether tenant isolation prevents cross-tenant access independent of individual roles",
+        "evidence_refs": [
+          "EVID-EEA36576"
+        ],
+        "failed_actions": [
+          "ACT-OP-258B16"
+        ],
+        "new_unknowns": [
+          "Does an alternate API version or workflow route exist that omits this authorization gate?"
+        ],
+        "expected_gain": 0.8,
+        "cost": 0.15,
+        "risk": 0.1,
+        "status": "EXECUTED",
+        "created_at": "2026-09-26T08:13:13.482081+00:00"
+      }
+    }
+  ],
+  "evidence_references": [
+    {
+      "path": "workspace/raw/M-CFD925C6/execution/EVID-D48ECED4.txt",
+      "size_bytes": 270,
+      "sha256": "f21cb04c87b7ab24727a18dee6eef89ff4621748d530716c54d0aec19aaaab00"
+    }
+  ],
+  "blockers": [],
+  "invariants_verified": {
+    "tools_count": 18,
+    "scope_enforcement": "PASS",
+    "raw_evidence_persisted": "PASS"
+  },
+  "mission_id": "M-CFD925C6",
+  "checkpoint_capsule": {
+    "checkpoint_id": "capsule_00001",
+    "mission_id": "M-CFD925C6"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hvc_run_id": "HVC-286E6ED3",
+  "total_canaries_checked": 54,
+  "runtime_components_scanned": [
+    "BrainState.Hypotheses",
+    "BrainState.CandidateActions",
+    "BrainState.Observations",
+    "SecurityGraphStore.Nodes",
+    "SecurityGraphStore.Relationships",
+    "MissionManager.MissionState",
+    "P13KnowledgeStore.Items"
+  ],
+  "leaks_detected_count": 0,
+  "violations": [],
+  "quarantine_verified": true,
+  "digest": "3980464359ba725a4835d3afed069933162ad0ec8f7580ff79bf21414795b601"
+}

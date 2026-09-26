@@ -1,0 +1,559 @@
+{
+  "catalog_version": "2.0.0-HVC",
+  "total_cases": 27,
+  "positive_cases": 17,
+  "negative_cases": 10,
+  "vulnerability_classes_count": 9,
+  "records": [
+    {
+      "case_id": "HVC-IDOR-POS-01",
+      "vulnerability_category": "IDOR_BOLA",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_A",
+      "cwe_id": "CWE-639",
+      "target_endpoints": [
+        "/api/v2/customers/501/orders"
+      ],
+      "probe_parameters": [
+        "customer_id"
+      ],
+      "attack_vector": "GET /api/v2/customers/501/orders using customer 500 session",
+      "expected_severity": "HIGH",
+      "structural_variation": "RESTful URL Path Parameter",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_EFC84928CE17BCBD",
+      "ground_truth_id": "GT-EXP-534217D7",
+      "description": "Cross-customer horizontal order access via URL customer_id manipulation"
+    },
+    {
+      "case_id": "HVC-IDOR-POS-02",
+      "vulnerability_category": "IDOR_BOLA",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_A",
+      "cwe_id": "CWE-639",
+      "target_endpoints": [
+        "/v1/documents/fetch"
+      ],
+      "probe_parameters": [
+        "doc_uuid",
+        "org_id"
+      ],
+      "attack_vector": "GET /v1/documents/fetch?doc_uuid=9b1deb4d&org_id=2",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "Query String Parameters",
+      "auth_model": "Session Cookie",
+      "canary_token": "HVC_GT_CANARY_5B8B8C4224706B16",
+      "ground_truth_id": "GT-EXP-68552BC7",
+      "description": "Document exfiltration across organizations via query string IDOR"
+    },
+    {
+      "case_id": "HVC-IDOR-NEG-01",
+      "vulnerability_category": "IDOR_BOLA",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/api/v2/accounts/882/statement"
+      ],
+      "probe_parameters": [
+        "account_id"
+      ],
+      "attack_vector": "GET /api/v2/accounts/882/statement returns 403 FORBIDDEN for unauthorized tenant",
+      "expected_severity": "NONE",
+      "structural_variation": "RESTful URL Path Parameter",
+      "auth_model": "Bearer JWT with Tenant Claim",
+      "canary_token": "HVC_GT_CANARY_16DE83153C2D7319",
+      "ground_truth_id": "GT-EXP-D6815BE9",
+      "description": "Suspicious numeric account endpoint that rigorously enforces tenant ownership"
+    },
+    {
+      "case_id": "HVC-BFLA-POS-01",
+      "vulnerability_category": "AUTHORIZATION_FLAW",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_B",
+      "cwe_id": "CWE-285",
+      "target_endpoints": [
+        "/api/admin/system/audit-export"
+      ],
+      "probe_parameters": [],
+      "attack_vector": "POST /api/admin/system/audit-export without admin role claim",
+      "expected_severity": "HIGH",
+      "structural_variation": "RPC-style Admin Action",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_1682D79009BD00DF",
+      "ground_truth_id": "GT-EXP-A07263AE",
+      "description": "Unprivileged regular user invoking administrative audit export"
+    },
+    {
+      "case_id": "HVC-BFLA-POS-02",
+      "vulnerability_category": "AUTHORIZATION_FLAW",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_B",
+      "cwe_id": "CWE-285",
+      "target_endpoints": [
+        "/management/users/ban"
+      ],
+      "probe_parameters": [
+        "target_user_id"
+      ],
+      "attack_vector": "PUT /management/users/ban bypassing POST-only authorization filter",
+      "expected_severity": "HIGH",
+      "structural_variation": "HTTP Verb Tampering",
+      "auth_model": "Session Cookie",
+      "canary_token": "HVC_GT_CANARY_414D757CBC3ABC80",
+      "ground_truth_id": "GT-EXP-2346BF6C",
+      "description": "Bypassing authorization middleware by substituting PUT for POST"
+    },
+    {
+      "case_id": "HVC-BFLA-NEG-02",
+      "vulnerability_category": "AUTHORIZATION_FLAW",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/admin/telemetry/stats"
+      ],
+      "probe_parameters": [],
+      "attack_vector": "GET /admin/telemetry/stats returns 401/403 on missing SUPERADMIN role",
+      "expected_severity": "NONE",
+      "structural_variation": "Administrative Metrics Route",
+      "auth_model": "RBAC Session Guard",
+      "canary_token": "HVC_GT_CANARY_F542119640A15933",
+      "ground_truth_id": "GT-EXP-BF13B7EB",
+      "description": "Exposed administrative path with strict cryptographic signature verification"
+    },
+    {
+      "case_id": "HVC-PRIVESC-POS-01",
+      "vulnerability_category": "PRIVILEGE_ESCALATION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_B",
+      "cwe_id": "CWE-269",
+      "target_endpoints": [
+        "/api/v1/users/me/profile"
+      ],
+      "probe_parameters": [
+        "role",
+        "is_admin"
+      ],
+      "attack_vector": "PATCH /api/v1/users/me/profile with body {\"role\": \"ADMIN\"}",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "JSON Mass Assignment",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_4C0C37CF98450E05",
+      "ground_truth_id": "GT-EXP-4963CCA8",
+      "description": "Vertical privilege escalation through unvalidated profile role patching"
+    },
+    {
+      "case_id": "HVC-PRIVESC-POS-02",
+      "vulnerability_category": "PRIVILEGE_ESCALATION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_B",
+      "cwe_id": "CWE-269",
+      "target_endpoints": [
+        "/portal/teams/join"
+      ],
+      "probe_parameters": [
+        "team_id",
+        "privilege_level"
+      ],
+      "attack_vector": "POST /portal/teams/join with privilege_level=OWNER",
+      "expected_severity": "HIGH",
+      "structural_variation": "Form-encoded Parameter Manipulation",
+      "auth_model": "Session Cookie",
+      "canary_token": "HVC_GT_CANARY_DA90B0C6C85EFF10",
+      "ground_truth_id": "GT-EXP-2E9A6942",
+      "description": "Escalating team privileges from MEMBER to OWNER upon join request"
+    },
+    {
+      "case_id": "HVC-PRIVESC-NEG-03",
+      "vulnerability_category": "PRIVILEGE_ESCALATION",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/api/v1/account/settings"
+      ],
+      "probe_parameters": [
+        "role",
+        "permissions"
+      ],
+      "attack_vector": "PATCH /api/v1/account/settings ignores role field and updates only allowed fields",
+      "expected_severity": "NONE",
+      "structural_variation": "DTO Whitelist Binding",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_8637F5A5C18CC96A",
+      "ground_truth_id": "GT-EXP-5B9F8719",
+      "description": "Endpoint appears vulnerable to mass assignment but DTO strictly ignores role"
+    },
+    {
+      "case_id": "HVC-TENANT-POS-01",
+      "vulnerability_category": "TENANT_ISOLATION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_G",
+      "cwe_id": "CWE-284",
+      "target_endpoints": [
+        "/api/reports/quarterly"
+      ],
+      "probe_parameters": [
+        "X-Tenant-ID"
+      ],
+      "attack_vector": "GET /api/reports/quarterly with X-Tenant-ID: victim-tenant-corp",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "HTTP Custom Header Injection",
+      "auth_model": "API Key",
+      "canary_token": "HVC_GT_CANARY_F9D54DD5B262E96A",
+      "ground_truth_id": "GT-EXP-4A2056DB",
+      "description": "Cross-tenant leakage via client-controlled X-Tenant-ID header"
+    },
+    {
+      "case_id": "HVC-TENANT-POS-02",
+      "vulnerability_category": "TENANT_ISOLATION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_G",
+      "cwe_id": "CWE-284",
+      "target_endpoints": [
+        "/graphql"
+      ],
+      "probe_parameters": [
+        "organizationSlug"
+      ],
+      "attack_vector": "GraphQL query organization(slug: 'tenant-b') { apiKeys }",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "GraphQL Schema Field Query",
+      "auth_model": "Bearer Token",
+      "canary_token": "HVC_GT_CANARY_409938D9796EAC56",
+      "ground_truth_id": "GT-EXP-DC6A7758",
+      "description": "GraphQL resolver omits tenant boundary check, returning foreign org keys"
+    },
+    {
+      "case_id": "HVC-TENANT-NEG-04",
+      "vulnerability_category": "TENANT_ISOLATION",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/data/storage/export"
+      ],
+      "probe_parameters": [
+        "X-Tenant-ID"
+      ],
+      "attack_vector": "GET /data/storage/export overrides custom header with JWT tenant claim",
+      "expected_severity": "NONE",
+      "structural_variation": "Header Override Protection",
+      "auth_model": "Cryptographic JWT Claim",
+      "canary_token": "HVC_GT_CANARY_A3A0D835656B7B38",
+      "ground_truth_id": "GT-EXP-FDD772F3",
+      "description": "Endpoint accepts X-Tenant-ID header but strictly enforces JWT tenant claim"
+    },
+    {
+      "case_id": "HVC-AUTH-POS-01",
+      "vulnerability_category": "AUTH_SESSION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_F",
+      "cwe_id": "CWE-384",
+      "target_endpoints": [
+        "/auth/login",
+        "/auth/callback"
+      ],
+      "probe_parameters": [
+        "session_id"
+      ],
+      "attack_vector": "Pre-authenticated session cookie maintained after successful login",
+      "expected_severity": "MEDIUM",
+      "structural_variation": "State Transition Flaw",
+      "auth_model": "Cookie-based Session",
+      "canary_token": "HVC_GT_CANARY_F070190442AA7FD3",
+      "ground_truth_id": "GT-EXP-34D66C30",
+      "description": "Session identifier not rotated upon privilege elevation / login"
+    },
+    {
+      "case_id": "HVC-AUTH-POS-02",
+      "vulnerability_category": "AUTH_SESSION",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_F",
+      "cwe_id": "CWE-640",
+      "target_endpoints": [
+        "/auth/reset-password/confirm"
+      ],
+      "probe_parameters": [
+        "reset_token"
+      ],
+      "attack_vector": "GET /auth/reset-password/confirm with predictable timestamp token",
+      "expected_severity": "HIGH",
+      "structural_variation": "Predictable Token Sequence",
+      "auth_model": "Token-based Reset",
+      "canary_token": "HVC_GT_CANARY_268AECAE92F89087",
+      "ground_truth_id": "GT-EXP-39078CE3",
+      "description": "Password reset token generated from predictable timestamp without entropy"
+    },
+    {
+      "case_id": "HVC-AUTH-NEG-05",
+      "vulnerability_category": "AUTH_SESSION",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/auth/refresh"
+      ],
+      "probe_parameters": [
+        "refresh_token"
+      ],
+      "attack_vector": "POST /auth/refresh invalidates old refresh token immediately",
+      "expected_severity": "NONE",
+      "structural_variation": "Single-use Refresh Token",
+      "auth_model": "Rotating Refresh Tokens",
+      "canary_token": "HVC_GT_CANARY_6624F3FF100B82CB",
+      "ground_truth_id": "GT-EXP-6B0FA5EE",
+      "description": "Refresh endpoint strictly destroys consumed tokens and re-issues fresh pairs"
+    },
+    {
+      "case_id": "HVC-PARAM-POS-01",
+      "vulnerability_category": "API_PARAMETER",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_E",
+      "cwe_id": "CWE-89",
+      "target_endpoints": [
+        "/api/v3/catalog/search"
+      ],
+      "probe_parameters": [
+        "filter",
+        "order_by"
+      ],
+      "attack_vector": "GET /api/v3/catalog/search?order_by=price;SELECT+1",
+      "expected_severity": "HIGH",
+      "structural_variation": "Sorting / Dynamic Query Construction",
+      "auth_model": "Public / API Key",
+      "canary_token": "HVC_GT_CANARY_7F5BC817BF673B07",
+      "ground_truth_id": "GT-EXP-134CAA1D",
+      "description": "Unsanitized order_by clause injected directly into database query"
+    },
+    {
+      "case_id": "HVC-PARAM-POS-02",
+      "vulnerability_category": "API_PARAMETER",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_E",
+      "cwe_id": "CWE-215",
+      "target_endpoints": [
+        "/api/internal/debug"
+      ],
+      "probe_parameters": [
+        "debug_mode",
+        "bypass_cache"
+      ],
+      "attack_vector": "GET /api/internal/debug?debug_mode=true returns full environment vars",
+      "expected_severity": "MEDIUM",
+      "structural_variation": "Hidden Debug Parameter",
+      "auth_model": "No Auth / Intranet Assumption",
+      "canary_token": "HVC_GT_CANARY_1BB316902CEDCC58",
+      "ground_truth_id": "GT-EXP-7E860963",
+      "description": "Client parameter debug_mode=true exposes process environment and stack trace"
+    },
+    {
+      "case_id": "HVC-PARAM-NEG-06",
+      "vulnerability_category": "API_PARAMETER",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/api/v3/orders/list"
+      ],
+      "probe_parameters": [
+        "sort_order"
+      ],
+      "attack_vector": "GET /api/v3/orders/list?sort_order=INVALID returns 400 Bad Request",
+      "expected_severity": "NONE",
+      "structural_variation": "Strict Enum Schema Validation",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_6708A0445E7475C3",
+      "ground_truth_id": "GT-EXP-ADA8623A",
+      "description": "Parameter accepts sort criteria but validates against strict enum whitelist"
+    },
+    {
+      "case_id": "HVC-LOGIC-POS-01",
+      "vulnerability_category": "WORKFLOW_LOGIC",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_C",
+      "cwe_id": "CWE-840",
+      "target_endpoints": [
+        "/checkout/step2-shipping",
+        "/checkout/step4-complete"
+      ],
+      "probe_parameters": [
+        "order_id"
+      ],
+      "attack_vector": "POST /checkout/step4-complete without completing payment in step3",
+      "expected_severity": "HIGH",
+      "structural_variation": "Multi-Step Checkout State Machine",
+      "auth_model": "Session Cookie",
+      "canary_token": "HVC_GT_CANARY_642A320079EE22A2",
+      "ground_truth_id": "GT-EXP-6491DA77",
+      "description": "Skipping mandatory payment validation step directly to fulfillment"
+    },
+    {
+      "case_id": "HVC-LOGIC-POS-02",
+      "vulnerability_category": "WORKFLOW_LOGIC",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_C",
+      "cwe_id": "CWE-362",
+      "target_endpoints": [
+        "/api/cart/apply-coupon"
+      ],
+      "probe_parameters": [
+        "coupon_code",
+        "cart_id"
+      ],
+      "attack_vector": "Parallel requests applying single-use coupon multiple times",
+      "expected_severity": "MEDIUM",
+      "structural_variation": "Concurrency / Atomic Transaction Flaw",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_9CF5B09C41885996",
+      "ground_truth_id": "GT-EXP-E9FF1E25",
+      "description": "Lack of database row-level locking allows one-time discount code reuse"
+    },
+    {
+      "case_id": "HVC-LOGIC-NEG-07",
+      "vulnerability_category": "WORKFLOW_LOGIC",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/transfer/verify",
+        "/transfer/execute"
+      ],
+      "probe_parameters": [
+        "transaction_token"
+      ],
+      "attack_vector": "POST /transfer/execute without 2FA token returns 409 Conflict",
+      "expected_severity": "NONE",
+      "structural_variation": "Cryptographic State Machine Guard",
+      "auth_model": "Multi-Factor Session",
+      "canary_token": "HVC_GT_CANARY_102829212EEF6C67",
+      "ground_truth_id": "GT-EXP-78B625CF",
+      "description": "Multi-stage transfer strictly enforces linear progression and one-time tokens"
+    },
+    {
+      "case_id": "HVC-TOKEN-POS-01",
+      "vulnerability_category": "TOKEN_TRANSFER",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_F",
+      "cwe_id": "CWE-287",
+      "target_endpoints": [
+        "https://subsidiary.example.com/api/userinfo"
+      ],
+      "probe_parameters": [
+        "Authorization"
+      ],
+      "attack_vector": "Replaying primary site token on subsidiary without audience validation",
+      "expected_severity": "HIGH",
+      "structural_variation": "Audience Claim Omission (aud)",
+      "auth_model": "JWT Bearer",
+      "canary_token": "HVC_GT_CANARY_BF795477E8D17AB7",
+      "ground_truth_id": "GT-EXP-EC60CEEF",
+      "description": "Cross-service token replay due to lack of JWT audience and issuer verification"
+    },
+    {
+      "case_id": "HVC-TOKEN-NEG-08",
+      "vulnerability_category": "TOKEN_TRANSFER",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "https://payment.example.com/api/charge"
+      ],
+      "probe_parameters": [
+        "Authorization"
+      ],
+      "attack_vector": "Bearer token missing 'aud=payment.example.com' rejected with 401",
+      "expected_severity": "NONE",
+      "structural_variation": "Cryptographic Audience Binding",
+      "auth_model": "JWT with Strict aud validation",
+      "canary_token": "HVC_GT_CANARY_396372793FE19CD3",
+      "ground_truth_id": "GT-EXP-6109CA71",
+      "description": "Service validates audience and key ID, rejecting cross-service tokens"
+    },
+    {
+      "case_id": "HVC-CHAIN-POS-01",
+      "vulnerability_category": "MULTI_STEP_CHAIN",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_D",
+      "cwe_id": "CWE-285",
+      "target_endpoints": [
+        "/api/v1/users/export",
+        "/admin/jobs/trigger"
+      ],
+      "probe_parameters": [
+        "job_id",
+        "user_id"
+      ],
+      "attack_vector": "IDOR read user backup key -> BFLA trigger admin restoration job with leaked key",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "Two-Stage Lateral to Vertical Pivot",
+      "auth_model": "Mixed Session / API Key",
+      "canary_token": "HVC_GT_CANARY_18C61C9D5BAD87AA",
+      "ground_truth_id": "GT-EXP-B5D378A5",
+      "description": "Multi-step attack chain linking horizontal read to vertical remote execution"
+    },
+    {
+      "case_id": "HVC-CHAIN-NEG-09",
+      "vulnerability_category": "MULTI_STEP_CHAIN",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/portal/data/preview",
+        "/portal/data/download"
+      ],
+      "probe_parameters": [
+        "preview_id",
+        "download_token"
+      ],
+      "attack_vector": "Leaked preview_id cannot be converted into download_token without KMS sign",
+      "expected_severity": "NONE",
+      "structural_variation": "KMS-Signed Token Boundary",
+      "auth_model": "HMAC Signed Tokens",
+      "canary_token": "HVC_GT_CANARY_0A0F08C78DA82F6C",
+      "ground_truth_id": "GT-EXP-01341942",
+      "description": "Multi-step workflow designed with independent KMS signing between stages"
+    },
+    {
+      "case_id": "HVC-SSRF-POS-01",
+      "vulnerability_category": "API_PARAMETER",
+      "case_type": "VULNERABLE_POSITIVE",
+      "target_class": "CLASS_E",
+      "cwe_id": "CWE-918",
+      "target_endpoints": [
+        "/api/webhooks/subscribe"
+      ],
+      "probe_parameters": [
+        "callback_url"
+      ],
+      "attack_vector": "POST /api/webhooks/subscribe with callback_url=http://169.254.169.254/latest/meta-data/",
+      "expected_severity": "CRITICAL",
+      "structural_variation": "Outbound Webhook Registration",
+      "auth_model": "API Key",
+      "canary_token": "HVC_GT_CANARY_4DCAEFC6D412989F",
+      "ground_truth_id": "GT-EXP-913599C2",
+      "description": "Server fetches metadata IP without IP whitelist validation"
+    },
+    {
+      "case_id": "HVC-SSRF-NEG-10",
+      "vulnerability_category": "API_PARAMETER",
+      "case_type": "SECURE_NEGATIVE_CONTROL",
+      "target_class": "CLASS_H",
+      "cwe_id": "CWE-0",
+      "target_endpoints": [
+        "/api/integrations/verify-endpoint"
+      ],
+      "probe_parameters": [
+        "endpoint_url"
+      ],
+      "attack_vector": "Private RFC-1918 and loopback IPs rejected with 422 Unprocessable Entity",
+      "expected_severity": "NONE",
+      "structural_variation": "DNS Resolution IP Blocklist Filter",
+      "auth_model": "Bearer JWT",
+      "canary_token": "HVC_GT_CANARY_4455F75FDC196AB5",
+      "ground_truth_id": "GT-EXP-6713633E",
+      "description": "SSRF filter resolves DNS and rejects private/loopback/cloud metadata IP ranges"
+    }
+  ]
+}

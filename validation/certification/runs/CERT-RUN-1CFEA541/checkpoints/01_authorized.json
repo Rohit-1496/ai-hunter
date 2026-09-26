@@ -1,0 +1,11 @@
+{
+  "checkpoint_name": "01_authorized",
+  "run_id": "CERT-RUN-1CFEA541",
+  "recorded_at": "2026-09-04T08:26:55Z",
+  "data": {
+    "authorized": false,
+    "errors": [
+      "DENIED: Target 'http://127.0.0.1:8081/portal' is explicitly listed under excluded_assets."
+    ]
+  }
+}

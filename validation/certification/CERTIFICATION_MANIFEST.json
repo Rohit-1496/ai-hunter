@@ -1,0 +1,226 @@
+{
+  "manifest_version": "1.0.0",
+  "source_run_id": "CERT-RUN-C8D12CE2",
+  "generated_at": "2026-09-04T08:33:19Z",
+  "artifact_count": 31,
+  "artifacts": [
+    {
+      "artifact": "CERT-161DD22B.json",
+      "sha256": "5825d58f24f28a365a784eb8af60ef84030dbd0618a9b0a01a892cb8b3379a11",
+      "size_bytes": 3647,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "CERT-7BEAD703.json",
+      "sha256": "13c58641217fd04b3556a2ac4d99a7aedb2cacac8153d063b2833447b42689ed",
+      "size_bytes": 3647,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "CERTIFICATION_MASTER_REPORT.md",
+      "sha256": "23fc1bfaefeac70eae29d8e27c790ef7c79b9519495e5bb08bea802d731d6a17",
+      "size_bytes": 10297,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510638_public.json",
+      "sha256": "6103be4803415d3718b13dac0e5efd513f53ef8b97c891400ce0c84e55e89f12",
+      "size_bytes": 2057,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510638_raw.json",
+      "sha256": "0debb05d0da939ce208efb904527d95502146b267a3ead2774dbd24cb0e9aa00",
+      "size_bytes": 2074,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510659_public.json",
+      "sha256": "e2d3613466464b5836dd7860e313ea709a91718ce0addb6972a782a4ee50239e",
+      "size_bytes": 2057,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510659_raw.json",
+      "sha256": "ab3921cf62370956810cab774e50261b82eb54bb016373e1f3896db863a0e8ee",
+      "size_bytes": 2074,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510728_public.json",
+      "sha256": "71b13cc7d8dfd14b00a6857ed213583fd90aaaf31738253803e0c21e03105646",
+      "size_bytes": 2057,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "findings/F-BFLA-1788510728_raw.json",
+      "sha256": "64790cca7c8322e3b4c642d25b8bacfe56a2c5e68526e21f2360aafebd468c53",
+      "size_bytes": 2074,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "latest_certification.json",
+      "sha256": "13c58641217fd04b3556a2ac4d99a7aedb2cacac8153d063b2833447b42689ed",
+      "size_bytes": 3647,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-1CFEA541/checkpoints/01_authorized.json",
+      "sha256": "fe20572798526e330d3eb8ad3b02d7423ab909805e2784b6cf4f9d393cb886a0",
+      "size_bytes": 286,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-1CFEA541.json",
+      "sha256": "0a30deebbf87131685b0bb0e772ac2b0315ce82b9fbb85f3b205f5f850caa55f",
+      "size_bytes": 1399,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-23B26B07/checkpoints/01_authorized.json",
+      "sha256": "b6cc66cc826db468c937c05bbd017cad056e56049f91938d0101fe2e3aedd37a",
+      "size_bytes": 286,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-23B26B07.json",
+      "sha256": "e029fc28eb920fbe5e410c5e8af1a11b887564e3d16bb0c7a932d3fbe10a401a",
+      "size_bytes": 1457,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-C8D12CE2/checkpoints/01_authorized.json",
+      "sha256": "ff8a9676beadbab8978093a8e5936d3afbbd6d2cccef0073451ef746dc126e83",
+      "size_bytes": 180,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-C8D12CE2/checkpoints/02_pre_run_snapshot.json",
+      "sha256": "e62f960f77b54038f82218ff83629fed2abefbe1de18b7b9b08f952b6e12d070",
+      "size_bytes": 596,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-C8D12CE2/checkpoints/03_research_active.json",
+      "sha256": "98097a988a701a2388b6dbfa28d1b528b5646839046cb0d0bd6b4aede71386e0",
+      "size_bytes": 167,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-C8D12CE2/checkpoints/07_evaluation_complete.json",
+      "sha256": "5e01760fa56089e2c210bde5b18ee9059765fe277eb7f18bd41bc8b3b1b63fe2",
+      "size_bytes": 8274,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-C8D12CE2.json",
+      "sha256": "5c4ae71a20de9014096f893c257ef37eb8f2882e73c7e54d68d6cc4b40b52126",
+      "size_bytes": 1457,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-DB5DA2DD/checkpoints/01_authorized.json",
+      "sha256": "5b251465a602efb16e582f5dee092159b93dd18f52c5950559fff574fa6c7310",
+      "size_bytes": 180,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-DB5DA2DD/checkpoints/02_pre_run_snapshot.json",
+      "sha256": "bedc0f8b73f6bff94bff1828f45b55e0488a79220175783ed7c427a9566f20bc",
+      "size_bytes": 596,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-DB5DA2DD/checkpoints/07_evaluation_complete.json",
+      "sha256": "329edef37eb17c51838ff3c6f18acaa00cb31d82a30ceb91896246f028cf3b84",
+      "size_bytes": 8338,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-DB5DA2DD.json",
+      "sha256": "5b3f92f348628198ecec4c080bfbe4ec6aa38fd8c7fad3e5af597cefa8daec07",
+      "size_bytes": 1457,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-E6FF5A22/checkpoints/01_authorized.json",
+      "sha256": "012bb36250aa2752bfc4b20e4e418f96a0c35efee45c5e621e8ae9429aaf3a83",
+      "size_bytes": 180,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-E6FF5A22/checkpoints/02_pre_run_snapshot.json",
+      "sha256": "f3c8ff1abfdfa11d0944bae3e45ebe39e46b1d5a5144809bb0e4b0505019fd5b",
+      "size_bytes": 596,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-E6FF5A22/checkpoints/07_evaluation_complete.json",
+      "sha256": "91ef4b5ea6bd0973fbdf85111b70132394574b2bde38ae61e688f74193bc34f0",
+      "size_bytes": 8338,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "runs/CERT-RUN-E6FF5A22.json",
+      "sha256": "045260f381b9c930c81e9456fd04a60e3e66a140bbfdd740139f32817bfa9345",
+      "size_bytes": 1457,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "targets/TARGET-A-WEBAPP.json",
+      "sha256": "2e089407d29d432b69691b6ee3f75fe6218bebc667070a2ce1dedab6c3fe4a03",
+      "size_bytes": 1472,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "targets/TARGET-B-API.json",
+      "sha256": "ab1ad0afabca29b1ad2e0b2c38057f03ca148f85a3f0bee8509ae424957444ec",
+      "size_bytes": 1471,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "targets/TARGET-C-WORKFLOW.json",
+      "sha256": "843424e0329c3ac95329b7d4b63522965dffaa503c3ec55ccc1a26160ea3c1fa",
+      "size_bytes": 1436,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    },
+    {
+      "artifact": "targets/TARGET-D-GRAPHQL.json",
+      "sha256": "fe652c30acdba97e6c77696a4e4dc288944d3e68d6814fa978d1df3b41577a7d",
+      "size_bytes": 1472,
+      "created_at": "2026-09-04T08:33:19Z",
+      "source_run": "CERT-RUN-C8D12CE2"
+    }
+  ],
+  "manifest_digest": "37229c7dfe876891190fa2b78ab1ee1e8acf8ac29cf0dd9f65a412650b350c65"
+}

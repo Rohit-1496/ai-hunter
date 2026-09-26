@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  ai-hunter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ai-hunter:hardened-v1
+    container_name: ai-hunter-runtime
+    read_only: true
+    user: "10001:10001"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - hunter-internal
+    volumes:
+      - hunter-state:/app/state:rw
+      - hunter-workspace:/app/workspace:rw
+    tmpfs:
+      - /tmp:size=64M,mode=1777,noexec,nosuid,nodev
+      - /run:size=16M,mode=0755,noexec,nosuid,nodev
+    environment:
+      - HUNTER_AUTH_MODE=production
+      - HUNTER_PROJECT_ROOT=/app
+      - PYTHONPATH=/app
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2048M
+          pids: 100
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+    restart: unless-stopped
+
+networks:
+  hunter-internal:
+    driver: bridge
+    internal: true # Default-deny outbound internet egress for isolated execution
+
+volumes:
+  hunter-state:
+    driver: local
+  hunter-workspace:
+    driver: local
