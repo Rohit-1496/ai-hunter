@@ -69,6 +69,9 @@ RESERVED_NETWORKS = (
     ipaddress.ip_network("fc00::/7"),          # IPv6 Unique Local Address (RFC 4193)
 )
 
+# NAT64 prefix (RFC 6052) - translation addresses, not real endpoints
+NAT64_PREFIX = ipaddress.ip_network("64:ff9b::/96")
+
 
 @dataclass
 class SSRFVerdict:
@@ -191,6 +194,10 @@ def _is_prohibited_address(ip: ipaddress._BaseAddress) -> tuple[bool, str]:
     s = str(ip)
     if s in CLOUD_METADATA_IPS:
         return True, "CLOUD_METADATA_IP"
+    # NAT64 prefix (RFC 6052) - these are IPv4-to-IPv6 translation addresses,
+    # not real attackable endpoints. The actual IPv4 endpoints are separately resolved.
+    if isinstance(ip, ipaddress.IPv6Address) and ip in NAT64_PREFIX:
+        return False, ""
     if ip.is_unspecified:
         return True, "UNSPECIFIED_ADDRESS"
     if ip.is_loopback:

@@ -141,6 +141,9 @@ ALLOWED_MCP_TOOLS = frozenset({
     "hunter_action_propose",
     "hunter_mission_step",
     "hunter_mission_run_loop",
+    "hunter_browser_act",
+    "hunter_burp_view",
+    "hunter_burp_replay",
 })
 
 # ---------------------------------------------------------------------------
@@ -667,6 +670,184 @@ def hunter_context_preview(mission_id: str) -> str:
         return json.dumps({"context": context}, indent=2)
     except Exception as e:
         return f"Error previewing context: {e}"
+
+
+# ---------------------------------------------------------------------------
+# Human browser + Burp hunting tools (Brain-connected, scope-gated)
+# ---------------------------------------------------------------------------
+
+def _hunting_auth_gate(rt: Any, mission_id: str, targets: list, capability: str, source: str) -> tuple[bool, str]:
+    """Shared scope+auth pre-gate for hunting MCP tools. Returns (allowed, error_json_or_empty)."""
+    try:
+        mission_data = rt.mission_get(mission_id)
+    except Exception as e:
+        return False, json.dumps({"status": "ERROR", "reason": f"Mission not found: {e}"})
+    target_scope = mission_data.get("target_scope") or []
+    excluded_scope = mission_data.get("excluded_scope") or []
+    from runtime.scope.resolver import ScopeResolver
+    for t in targets:
+        if isinstance(t, str) and (t.startswith("http://") or t.startswith("https://")):
+            verdict = ScopeResolver.decide(t, target_scope, excluded_scope=excluded_scope, mission_id=mission_id)
+            if not verdict.allowed:
+                try:
+                    rt._mission_manager.log_event(mission_id, "SEC_SCOPE_DENIED", {"source": source, **verdict.to_dict()})
+                except Exception:
+                    pass
+                return False, json.dumps({"status": "REJECTED", "reason": verdict.decision.value,
+                                          "details": verdict.reason_code, "target": t})
+    try:
+        auth_verdict = rt._check_mission_auth(mission_id, targets=targets, capability=capability, source=source)
+    except Exception as e:
+        return False, json.dumps({"status": "ERROR", "reason": f"Auth evaluation failed closed: {e}"})
+    if not auth_verdict.allowed:
+        return False, json.dumps({"status": "REJECTED", "reason": "AUTHZ_DENIED",
+                                  "details": getattr(auth_verdict, "reason_code", "denied")})
+    return True, ""
+
+
+@mcp.tool(
+    name="hunter_browser_act",
+    description=(
+        "Human-like browser hunting step (open/goto/signup/signin/scroll/click/fill_form/upload/screenshot). "
+        "Scope+auth+SSRF gated; captcha returns CAPTCHA_ASK_OPERATOR for the human to solve. "
+        "Browser traffic is routed via the Burp proxy so Burp sees every request."
+    ),
+)
+def hunter_browser_act(
+    mission_id: str,
+    url: str,
+    browser_action: str = "goto",
+    fields: dict | None = None,
+    selector: str = "",
+    upload_path: str = "",
+    objective: str = "",
+) -> str:
+    """Execute one gated human-like browser step for an authorized mission."""
+    try:
+        m_id = _validate_mission_id(mission_id)
+    except ValueError as e:
+        return json.dumps({"status": "REJECTED", "reason": "INVALID_MISSION_ID", "details": str(e)})
+    rt = _get_runtime()
+    try:
+        from runtime.hunting.human_browser_burp import build_browser_candidate, execute_browser_burp_plan
+        mission_data = rt.mission_get(m_id)
+        scope = mission_data.get("target_scope") or []
+        excl = mission_data.get("excluded_scope") or []
+        try:
+            candidate = build_browser_candidate(url, objective, browser_action,
+                                                fields=fields, selector=selector,
+                                                upload_path=upload_path,
+                                                mission_scope=scope, excluded_scope=excl)
+        except ValueError as e:
+            return json.dumps({"status": "REJECTED", "reason": "INVALID_PLAN", "details": str(e)})
+        if candidate.scope_alignment != "IN_SCOPE":
+            return json.dumps({"status": "REJECTED", "reason": "TARGET_OUT_OF_SCOPE",
+                               "details": f"scope_alignment={candidate.scope_alignment}"})
+        ok, err = _hunting_auth_gate(rt, m_id, [candidate.target], candidate.capability_id, "hunter_browser_act")
+        if not ok:
+            return err
+        res = execute_browser_burp_plan(rt._root, m_id, candidate, scope, excl)
+        try:
+            rt._mission_manager.log_event(m_id, "SEC_BROWSER_STEP",
+                                          {"action_id": candidate.id, "browser_action": browser_action,
+                                           "target": candidate.target, "status": res.get("status")})
+        except Exception:
+            pass
+        # Queue into Brain candidate pool for continuity (IN_SCOPE only).
+        try:
+            rt.brain.state.candidate_actions[candidate.id] = candidate
+        except Exception:
+            pass
+        return json.dumps(res, indent=2, default=str)
+    except Exception as e:
+        return json.dumps({"status": "ERROR", "reason": str(e)[:1000]})
+
+
+@mcp.tool(
+    name="hunter_burp_view",
+    description=(
+        "Passive Burp proxy view via loopback MCP (port 9876): proxy_history / get_request / get_response. "
+        "No target traffic is generated; scope gate still applies."
+    ),
+)
+def hunter_burp_view(
+    mission_id: str,
+    burp_action: str = "proxy_history",
+    item_id: str = "",
+    limit: int = 50,
+) -> str:
+    """Read Burp proxy data for an authorized mission (passive, loopback only)."""
+    try:
+        m_id = _validate_mission_id(mission_id)
+    except ValueError as e:
+        return json.dumps({"status": "REJECTED", "reason": "INVALID_MISSION_ID", "details": str(e)})
+    rt = _get_runtime()
+    try:
+        from runtime.hunting.human_browser_burp import build_burp_candidate, execute_browser_burp_plan
+        mission_data = rt.mission_get(m_id)
+        scope = mission_data.get("target_scope") or []
+        excl = mission_data.get("excluded_scope") or []
+        act = str(burp_action or "proxy_history").lower().strip()
+        if act == "replay":
+            return json.dumps({"status": "REJECTED", "reason": "USE_BURP_REPLAY_TOOL",
+                               "details": "replay requires hunter_burp_replay (active, scope-gated)"})
+        try:
+            candidate = build_burp_candidate("burp://proxy/history", f"Burp {act}",
+                                             burp_action=act, item_id=item_id,
+                                             mission_scope=scope, excluded_scope=excl)
+        except ValueError as e:
+            return json.dumps({"status": "REJECTED", "reason": "INVALID_PLAN", "details": str(e)})
+        candidate.input_parameters["limit"] = max(1, min(int(limit or 50), 200))
+        ok, err = _hunting_auth_gate(rt, m_id, [], candidate.capability_id, "hunter_burp_view")
+        if not ok:
+            return err
+        res = execute_browser_burp_plan(rt._root, m_id, candidate, scope, excl)
+        return json.dumps(res, indent=2, default=str)
+    except Exception as e:
+        return json.dumps({"status": "ERROR", "reason": str(e)[:1000]})
+
+
+@mcp.tool(
+    name="hunter_burp_replay",
+    description=(
+        "Burp request modify + replay via loopback MCP (port 9876). "
+        "Destination URL is scope+SSRF re-gated immediately before resend; "
+        "out-of-scope replays are BLOCKED."
+    ),
+)
+def hunter_burp_replay(mission_id: str, url: str, raw_request: str, objective: str = "") -> str:
+    """Modify + resend an in-scope Burp request for an authorized mission."""
+    try:
+        m_id = _validate_mission_id(mission_id)
+    except ValueError as e:
+        return json.dumps({"status": "REJECTED", "reason": "INVALID_MISSION_ID", "details": str(e)})
+    rt = _get_runtime()
+    try:
+        from runtime.hunting.human_browser_burp import build_burp_candidate, execute_browser_burp_plan
+        mission_data = rt.mission_get(m_id)
+        scope = mission_data.get("target_scope") or []
+        excl = mission_data.get("excluded_scope") or []
+        try:
+            candidate = build_burp_candidate(url, objective or f"Burp replay {url}",
+                                             burp_action="replay", raw_request=raw_request,
+                                             mission_scope=scope, excluded_scope=excl)
+        except ValueError as e:
+            return json.dumps({"status": "REJECTED", "reason": "INVALID_PLAN", "details": str(e)})
+        if candidate.scope_alignment != "IN_SCOPE":
+            return json.dumps({"status": "REJECTED", "reason": "TARGET_OUT_OF_SCOPE",
+                               "details": f"scope_alignment={candidate.scope_alignment}"})
+        ok, err = _hunting_auth_gate(rt, m_id, [candidate.target], candidate.capability_id, "hunter_burp_replay")
+        if not ok:
+            return err
+        res = execute_browser_burp_plan(rt._root, m_id, candidate, scope, excl)
+        try:
+            rt._mission_manager.log_event(m_id, "SEC_BURP_REPLAY",
+                                          {"target": candidate.target, "status": res.get("status")})
+        except Exception:
+            pass
+        return json.dumps(res, indent=2, default=str)
+    except Exception as e:
+        return json.dumps({"status": "ERROR", "reason": str(e)[:1000]})
 
 
 # ---------------------------------------------------------------------------
