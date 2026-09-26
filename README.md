@@ -84,7 +84,7 @@ ai-hunter/
 ## Installation
 Clone the repository and bootstrap the environment:
 ```bash
-git clone <repository>
+git clone https://github.com/Rohit-1496/ai-hunter.git
 cd ai-hunter
 ./scripts/bootstrap.sh
 ```
